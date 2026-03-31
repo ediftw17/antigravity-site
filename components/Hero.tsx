@@ -1,6 +1,7 @@
 "use client";
 
 import { AnimatedGroup } from "@/components/ui/animated-group";
+import { DottedSurface } from "@/components/ui/dotted-surface";
 import { motion } from "framer-motion";
 
 const heroVariants = {
@@ -40,74 +41,98 @@ export default function Hero() {
         minHeight: "100svh",
         display: "flex",
         flexDirection: "column",
-        justifyContent: "flex-end",
-        padding: "0 2rem 4rem",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "0 2rem",
         position: "relative",
         overflow: "hidden",
       }}
     >
-      {/* Subtle background gradient */}
-      <div
-        aria-hidden
-        style={{
-          position: "absolute",
-          inset: 0,
-          backgroundImage:
-            "radial-gradient(ellipse 80% 60% at 60% 20%, rgba(255,255,255,0.025) 0%, transparent 70%)",
-          pointerEvents: "none",
-        }}
-      />
+      <DottedSurface />
 
-      <div style={{ maxWidth: "1400px", width: "100%", margin: "0 auto" }}>
+      <div style={{ maxWidth: "1400px", width: "100%", textAlign: "center", position: "relative", zIndex: 1 }}>
         <AnimatedGroup variants={heroVariants}>
-          {/* Wordmark */}
           <h1
             className="hero-wordmark"
-            style={{ margin: "0 0 2rem" }}
+            style={{ margin: "0 0 1.5rem" }}
           >
             Nule & Co.
           </h1>
 
-          {/* Bottom row — tagline + scroll hint */}
+          <p className="hero-tagline" style={{ maxWidth: "700px", margin: "0 auto 2rem" }}>
+            Professional websites for local businesses. Built fast, designed to convert.
+          </p>
+
           <div
             style={{
               display: "flex",
-              alignItems: "flex-end",
-              justifyContent: "space-between",
-              gap: "2rem",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "1rem",
               flexWrap: "wrap",
             }}
           >
-            <p className="hero-tagline">
-              We design and build brands, products, and digital experiences
-              for companies that refuse to be ordinary.
-            </p>
-
-            <div
+            <a
+              href="#work"
               style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "flex-end",
-                gap: "0.5rem",
-                flexShrink: 0,
+                display: "inline-block",
+                padding: "0.75rem 2rem",
+                background: "var(--fg)",
+                color: "var(--bg)",
+                fontSize: "0.875rem",
+                fontWeight: 500,
+                letterSpacing: "0.02em",
+                textDecoration: "none",
+                transition: "opacity 0.2s",
               }}
             >
-              <span className="section-label">Scroll</span>
-              <motion.div
-                initial={{ scaleY: 0, originY: 0 }}
-                animate={{ scaleY: 1 }}
-                transition={{ delay: 1.2, duration: 0.8, ease: "easeOut" }}
-                style={{
-                  width: "1px",
-                  height: "48px",
-                  background:
-                    "linear-gradient(to bottom, rgba(255,255,255,0.3), transparent)",
-                }}
-              />
-            </div>
+              See Our Work
+            </a>
+            <a
+              href="#contact"
+              style={{
+                display: "inline-block",
+                padding: "0.75rem 2rem",
+                border: "1px solid var(--border)",
+                color: "var(--fg-muted)",
+                fontSize: "0.875rem",
+                fontWeight: 500,
+                letterSpacing: "0.02em",
+                textDecoration: "none",
+                transition: "color 0.2s, border-color 0.2s",
+              }}
+            >
+              Get in Touch
+            </a>
           </div>
         </AnimatedGroup>
       </div>
+
+      <motion.div
+        initial={{ scaleY: 0, originY: 0 }}
+        animate={{ scaleY: 1 }}
+        transition={{ delay: 1.2, duration: 0.8, ease: "easeOut" }}
+        style={{
+          position: "absolute",
+          bottom: "2rem",
+          left: "50%",
+          transform: "translateX(-50%)",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "0.5rem",
+        }}
+      >
+        <span className="section-label" style={{ fontSize: "0.65rem" }}>Scroll</span>
+        <div
+          style={{
+            width: "1px",
+            height: "48px",
+            background:
+              "linear-gradient(to bottom, rgba(255,255,255,0.3), transparent)",
+          }}
+        />
+      </motion.div>
     </section>
   );
 }
