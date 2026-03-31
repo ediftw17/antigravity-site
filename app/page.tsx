@@ -2,6 +2,7 @@
 
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
+import { DottedSurface } from "@/components/ui/dotted-surface";
 import LogoCloud from "@/components/LogoCloud";
 import ProjectShowcase from "@/components/ProjectShowcase";
 import Services from "@/components/Services";
@@ -14,6 +15,7 @@ import Footer from "@/components/Footer";
 export default function Home() {
   return (
     <main>
+      <DottedSurface />
       <Nav />
       <Hero />
       <LogoCloud />
