@@ -9,15 +9,41 @@ const geist = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "Nule & Co. — Creative Studio",
+  title: "Nule & Co. — Websites That Get You Customers",
   description:
-    "Nule & Co. — Full-service creative studio. Branding, web design, product design, software development, AI integrations, and campaigns. Israel-based, global clients.",
-  openGraph: {
-    title: "Nule & Co. — Creative Studio",
-    description:
-      "Nule & Co. — Full-service creative studio. Branding, web design, product design, software development, AI integrations, and campaigns.",
-    type: "website",
+    "Professional websites for local businesses. HVAC, dental, law firms, restaurants, and more. Built fast, designed to convert.",
+  icons: {
+    icon: [
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    apple: "/apple-icon.png",
   },
+  openGraph: {
+    title: "Nule & Co. — Websites That Get You Customers",
+    description:
+      "Professional websites for local businesses. HVAC, dental, law firms, restaurants, and more. Built fast, designed to convert.",
+    type: "website",
+    url: "https://nule.io",
+    siteName: "Nule & Co.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Nule & Co. — Websites that get you customers.",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Nule & Co. — Websites That Get You Customers",
+    description:
+      "Professional websites for local businesses. Built fast, designed to convert.",
+    images: ["/og-image.png"],
+  },
+  metadataBase: new URL("https://nule.io"),
 };
 
 export default function RootLayout({
