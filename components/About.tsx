@@ -151,7 +151,7 @@ function StatCounter({ icon, value, label, suffix, delay }: { icon: React.ReactN
   const displayValue = useTransform(springValue, (v) => Math.floor(v));
 
   return (
-    <motion.div style={{ background: "rgba(245,245,245,0.03)", border: "1px solid rgba(245,245,245,0.06)", padding: "1.5rem", borderRadius: "12px", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }} variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6, delay } } }} whileHover={{ y: -5, transition: { duration: 0.2 } }}>
+    <motion.div style={{ padding: "1.5rem", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }} variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6, delay } } }} whileHover={{ y: -5, transition: { duration: 0.2 } }}>
       <motion.div style={{ width: "3.5rem", height: "3.5rem", borderRadius: "50%", background: "rgba(245,245,245,0.05)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "1rem", color: "var(--fg)" }} whileHover={{ rotate: 360, transition: { duration: 0.8 } }}>
         {icon}
       </motion.div>
