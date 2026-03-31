@@ -108,10 +108,7 @@ export default function Hero() {
         </AnimatedGroup>
       </div>
 
-      <motion.div
-        initial={{ scaleY: 0, originY: 0 }}
-        animate={{ scaleY: 1 }}
-        transition={{ delay: 1.2, duration: 0.8, ease: "easeOut" }}
+      <div
         style={{
           position: "absolute",
           bottom: "2rem",
@@ -124,15 +121,18 @@ export default function Hero() {
         }}
       >
         <span className="section-label" style={{ fontSize: "0.65rem" }}>Scroll</span>
-        <div
-          style={{
-            width: "1px",
-            height: "48px",
-            background:
-              "linear-gradient(to bottom, rgba(255,255,255,0.3), transparent)",
-          }}
-        />
-      </motion.div>
+        <div style={{ position: "relative", width: "20px", height: "48px", overflow: "hidden" }}>
+          <motion.div
+            animate={{ y: ["-100%", "100%"] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+            style={{ position: "absolute", left: "50%", transform: "translateX(-50%)" }}
+          >
+            <svg width="12" height="20" viewBox="0 0 12 20" fill="none" style={{ opacity: 0.5 }}>
+              <path d="M6 0L6 16M6 16L1 11M6 16L11 11" stroke="rgba(245,245,245,0.6)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </motion.div>
+        </div>
+      </div>
     </section>
   );
 }
