@@ -3,30 +3,16 @@
 import { InfiniteSlider } from "@/components/ui/infinite-slider";
 
 const logos = [
-  {
-    src: "https://svgl.app/library/nextjs_wordmark_dark.svg",
-    alt: "Next.js",
-  },
-  {
-    src: "https://svgl.app/library/react_wordmark_dark.svg",
-    alt: "React",
-  },
-  {
-    src: "https://svgl.app/library/tailwindcss_wordmark_dark.svg",
-    alt: "Tailwind CSS",
-  },
-  {
-    src: "https://svgl.app/library/vercel_wordmark_dark.svg",
-    alt: "Vercel",
-  },
-  {
-    src: "https://svgl.app/library/typescript.svg",
-    alt: "TypeScript",
-  },
-  {
-    src: "https://svgl.app/library/framer-motion.svg",
-    alt: "Framer Motion",
-  },
+  { src: "https://www.svgrepo.com/show/354113/nextjs-icon.svg", alt: "Next.js" },
+  { src: "https://www.svgrepo.com/show/452092/react.svg", alt: "React" },
+  { src: "https://www.svgrepo.com/show/374118/tailwind.svg", alt: "Tailwind" },
+  { src: "https://www.svgrepo.com/show/327408/logo-vercel.svg", alt: "Vercel" },
+  { src: "https://www.svgrepo.com/show/374146/typescript-official.svg", alt: "TypeScript" },
+  { src: "https://www.svgrepo.com/show/306500/openai.svg", alt: "AI" },
+  { src: "https://www.svgrepo.com/show/452202/figma.svg", alt: "Figma" },
+  { src: "https://www.svgrepo.com/show/354379/stripe.svg", alt: "Stripe" },
+  { src: "https://www.svgrepo.com/show/353659/google-analytics.svg", alt: "Analytics" },
+  { src: "https://www.svgrepo.com/show/452210/git.svg", alt: "Git" },
 ];
 
 export default function LogoCloud() {

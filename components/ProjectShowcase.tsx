@@ -17,27 +17,24 @@ const projects: Project[] = [
     description:
       "Full-service HVAC website with booking, service pages, and reviews integration.",
     year: "2025",
-    link: "#",
-    image:
-      "https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=800",
+    link: "https://jf-air-and-heat.vercel.app",
+    image: "/projects/jf-air.png",
   },
   {
     title: "Panorama Style",
     description:
       "AI-generated restaurant website from a single data brief. Menu, reservations, gallery.",
     year: "2025",
-    link: "#",
-    image:
-      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800",
+    link: "https://panorama-style-hwox.vercel.app",
+    image: "/projects/panorama.png",
   },
   {
     title: "Nule & Co",
     description:
       "Our own studio site. Dark theme, premium components, Next.js + Tailwind.",
     year: "2026",
-    link: "#",
-    image:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800",
+    link: "https://antigravity-site-rouge.vercel.app",
+    image: "/projects/nule-co.png",
   },
   {
     title: "Your Business",

@@ -4,6 +4,7 @@ import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import LogoCloud from "@/components/LogoCloud";
 import ProjectShowcase from "@/components/ProjectShowcase";
+import About from "@/components/About";
 import Services from "@/components/Services";
 import HowItWorks from "@/components/HowItWorks";
 import Testimonials from "@/components/Testimonials";
@@ -18,6 +19,7 @@ export default function Home() {
       <Hero />
       <LogoCloud />
       <ProjectShowcase />
+      <About />
       <Services />
       <HowItWorks />
       <Testimonials />
