@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { useScroll, useTransform, motion } from "framer-motion";
+import { AnimatedBlobs } from "@/components/ui/animated-blobs";
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import LogoCloud from "@/components/LogoCloud";
@@ -33,6 +34,7 @@ export default function Home() {
 
   return (
     <main>
+      <AnimatedBlobs />
       <Nav />
       <div ref={heroContainer} style={{ position: "relative", height: "200vh" }}>
         <motion.div style={{ scale: heroScale, rotate: heroRotate, position: "sticky", top: 0, zIndex: 1 }}>
