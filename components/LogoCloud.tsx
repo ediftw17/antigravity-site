@@ -2,17 +2,17 @@
 
 import { InfiniteSlider } from "@/components/ui/infinite-slider";
 
-const logos = [
-  { src: "https://www.svgrepo.com/show/354113/nextjs-icon.svg", alt: "Next.js" },
-  { src: "https://www.svgrepo.com/show/452092/react.svg", alt: "React" },
-  { src: "https://www.svgrepo.com/show/374118/tailwind.svg", alt: "Tailwind" },
-  { src: "https://www.svgrepo.com/show/327408/logo-vercel.svg", alt: "Vercel" },
-  { src: "https://www.svgrepo.com/show/374146/typescript-official.svg", alt: "TypeScript" },
-  { src: "https://www.svgrepo.com/show/306500/openai.svg", alt: "AI" },
-  { src: "https://www.svgrepo.com/show/452202/figma.svg", alt: "Figma" },
-  { src: "https://www.svgrepo.com/show/354379/stripe.svg", alt: "Stripe" },
-  { src: "https://www.svgrepo.com/show/353659/google-analytics.svg", alt: "Analytics" },
-  { src: "https://www.svgrepo.com/show/452210/git.svg", alt: "Git" },
+const tools = [
+  "Next.js",
+  "React",
+  "Tailwind CSS",
+  "TypeScript",
+  "Vercel",
+  "Claude AI",
+  "Framer Motion",
+  "Figma",
+  "Google Analytics",
+  "Stripe",
 ];
 
 export default function LogoCloud() {
@@ -20,7 +20,7 @@ export default function LogoCloud() {
     <section
       style={{
         padding: "3rem 0",
-        maxWidth: "800px",
+        maxWidth: "900px",
         margin: "0 auto",
       }}
     >
@@ -35,15 +35,21 @@ export default function LogoCloud() {
       </p>
 
       <div className="logo-cloud-mask">
-        <InfiniteSlider gap={56} duration={30} durationOnHover={60}>
-          {logos.map((logo) => (
-            <img
-              key={logo.alt}
-              src={logo.src}
-              alt={logo.alt}
-              loading="lazy"
-              className="logo-cloud-img"
-            />
+        <InfiniteSlider gap={48} duration={25} durationOnHover={50}>
+          {tools.map((name) => (
+            <span
+              key={name}
+              style={{
+                fontSize: "0.8125rem",
+                fontWeight: 500,
+                color: "var(--fg-muted)",
+                whiteSpace: "nowrap",
+                letterSpacing: "0.02em",
+                userSelect: "none",
+              }}
+            >
+              {name}
+            </span>
           ))}
         </InfiniteSlider>
       </div>

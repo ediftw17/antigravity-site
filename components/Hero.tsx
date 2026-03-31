@@ -52,15 +52,23 @@ export default function Hero() {
 
       <div style={{ maxWidth: "1400px", width: "100%", textAlign: "center", position: "relative", zIndex: 1 }}>
         <AnimatedGroup variants={heroVariants}>
+          <p style={{ fontSize: "0.7rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--fg-muted)", margin: "0 0 1rem" }}>
+            AI-powered web studio
+          </p>
+
           <h1
             className="hero-wordmark"
-            style={{ margin: "0 0 1.5rem" }}
+            style={{ margin: "0 0 1rem" }}
           >
             Nule & Co.
           </h1>
 
-          <p className="hero-tagline" style={{ maxWidth: "700px", margin: "0 auto 2rem" }}>
-            Professional websites for local businesses. Built fast, designed to convert.
+          <p className="hero-tagline" style={{ maxWidth: "700px", margin: "0 auto 1rem" }}>
+            We build websites that get local businesses more customers.
+          </p>
+
+          <p style={{ maxWidth: "520px", margin: "0 auto 2.5rem", color: "var(--fg-muted)", fontSize: "0.9rem", lineHeight: 1.6 }}>
+            HVAC, dental, law firms, restaurants, and more. Your site goes live in days, not months. AI-assisted design, hand-finished quality.
           </p>
 
           <div
@@ -70,13 +78,14 @@ export default function Hero() {
               justifyContent: "center",
               gap: "1rem",
               flexWrap: "wrap",
+              marginBottom: "2rem",
             }}
           >
             <a
-              href="#work"
+              href="#contact"
               style={{
                 display: "inline-block",
-                padding: "0.75rem 2rem",
+                padding: "0.85rem 2.25rem",
                 background: "var(--fg)",
                 color: "var(--bg)",
                 fontSize: "0.875rem",
@@ -86,13 +95,13 @@ export default function Hero() {
                 transition: "opacity 0.2s",
               }}
             >
-              See Our Work
+              Get a Free Quote
             </a>
             <a
-              href="#contact"
+              href="#work"
               style={{
                 display: "inline-block",
-                padding: "0.75rem 2rem",
+                padding: "0.85rem 2.25rem",
                 border: "1px solid var(--border)",
                 color: "var(--fg-muted)",
                 fontSize: "0.875rem",
@@ -102,9 +111,13 @@ export default function Hero() {
                 transition: "color 0.2s, border-color 0.2s",
               }}
             >
-              Get in Touch
+              See Our Work
             </a>
           </div>
+
+          <p style={{ fontSize: "0.7rem", color: "var(--fg-subtle)", letterSpacing: "0.05em" }}>
+            No upfront payment. You only pay when you love the design.
+          </p>
         </AnimatedGroup>
       </div>
 
