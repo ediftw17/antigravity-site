@@ -109,7 +109,7 @@ export default function About() {
           ))}
         </motion.div>
 
-        <motion.div style={{ marginTop: "5rem", background: "rgba(245,245,245,0.03)", border: "1px solid rgba(245,245,245,0.08)", padding: "2.5rem", borderRadius: "12px", display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: "1.5rem" }} initial={{ opacity: 0, y: 30 }} animate={isStatsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }} transition={{ duration: 0.8, delay: 0.5 }}>
+        <motion.div style={{ marginTop: "5rem", padding: "2.5rem 0", display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: "1.5rem" }} initial={{ opacity: 0, y: 30 }} animate={isStatsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }} transition={{ duration: 0.8, delay: 0.5 }}>
           <div>
             <h3 style={{ fontSize: "1.5rem", fontWeight: 500, marginBottom: "0.5rem" }}>Ready to get more customers?</h3>
             <p style={{ color: "var(--fg-muted)", fontSize: "0.875rem" }}>Most sites are live in 3-5 days. No upfront cost until you see the design.</p>
