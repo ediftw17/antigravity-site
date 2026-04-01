@@ -21,13 +21,13 @@ export default function Footer() {
         margin: "0 auto",
       }}
     >
-      {/* Decorative lines */}
+      {/* Line navigation */}
       <div
         style={{
           display: "flex",
           alignItems: "center",
-          gap: "12px",
-          marginBottom: "2.5rem",
+          gap: "16px",
+          marginBottom: "2rem",
         }}
       >
         {navLinks.map((link, i) => (
@@ -37,9 +37,9 @@ export default function Footer() {
             style={{
               display: "flex",
               alignItems: "center",
-              gap: "8px",
+              gap: "10px",
               textDecoration: "none",
-              padding: "4px 0",
+              padding: "6px 0",
               cursor: "pointer",
             }}
             className="footer-line-link"
@@ -71,40 +71,10 @@ export default function Footer() {
         ))}
       </div>
 
-      {/* Main footer row */}
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          gap: "1rem",
-          flexWrap: "wrap",
-        }}
-      >
-        <span className="footer-text">
-          &copy; {year} Nule & Co.
-        </span>
-
-        <div style={{ display: "flex", gap: "2rem", alignItems: "center" }}>
-          <a
-            href="mailto:hello@nule.io"
-            className="footer-text"
-            style={{
-              textDecoration: "none",
-              transition: "color 0.2s ease",
-              color: "var(--fg-subtle)",
-            }}
-            onMouseEnter={(e) =>
-              (e.currentTarget.style.color = "var(--fg-muted)")
-            }
-            onMouseLeave={(e) =>
-              (e.currentTarget.style.color = "var(--fg-subtle)")
-            }
-          >
-            hello@nule.io
-          </a>
-        </div>
-      </div>
+      {/* Copyright only */}
+      <span className="footer-text">
+        &copy; {year} Nule & Co.
+      </span>
 
       <style>{`
         .footer-line-link:hover .footer-line {
@@ -112,7 +82,7 @@ export default function Footer() {
           background: var(--fg) !important;
         }
         .footer-line-link:hover .footer-line-label {
-          color: var(--fg-muted) !important;
+          color: var(--fg) !important;
         }
       `}</style>
     </footer>
