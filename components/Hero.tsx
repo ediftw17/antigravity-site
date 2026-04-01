@@ -2,6 +2,7 @@
 
 import { AnimatedGroup } from "@/components/ui/animated-group";
 import { DottedSurface } from "@/components/ui/dotted-surface";
+import AnimatedTextCycle from "@/components/ui/animated-text-cycle";
 import { motion } from "framer-motion";
 
 const heroVariants = {
@@ -63,12 +64,15 @@ export default function Hero() {
             Nule & Co.
           </h1>
 
-          <p className="hero-tagline" style={{ maxWidth: "700px", margin: "0 auto 1rem" }}>
-            We build websites that get local businesses more customers.
+          <p className="hero-tagline" style={{ maxWidth: "800px", margin: "0 auto 1rem", position: "relative" }}>
+            Your <AnimatedTextCycle
+              words={["HVAC company", "dental clinic", "law firm", "restaurant", "plumbing business", "gym"]}
+              interval={3000}
+            /> deserves a better website
           </p>
 
           <p style={{ maxWidth: "520px", margin: "0 auto 2.5rem", color: "var(--fg-muted)", fontSize: "0.9rem", lineHeight: 1.6 }}>
-            HVAC, dental, law firms, restaurants, and more. Your site goes live in days, not months. AI-assisted design, hand-finished quality.
+            Your site goes live in days, not months. AI-assisted design, hand-finished quality. No upfront cost.
           </p>
 
           <div
