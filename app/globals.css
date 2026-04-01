@@ -9,6 +9,10 @@
   --accent: #f5f5f5;
 }
 
+.hero-cycle-word {
+  color: #ffffff;
+}
+
 @theme inline {
   --color-background: var(--bg);
   --color-foreground: var(--fg);

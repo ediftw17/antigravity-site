@@ -44,7 +44,8 @@ export default function Hero() {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        padding: "0 2rem",
+        padding: "0 2rem 8rem",
+        paddingTop: "0",
         position: "relative",
         overflow: "hidden",
       }}
@@ -68,7 +69,8 @@ export default function Hero() {
             Your <AnimatedTextCycle
               words={["HVAC company", "dental clinic", "law firm", "restaurant", "plumbing business", "gym"]}
               interval={3000}
-            /> deserves a better website
+              className="hero-cycle-word"
+            />{" "}deserves a better website
           </p>
 
           <p style={{ maxWidth: "520px", margin: "0 auto 2.5rem", color: "var(--fg-muted)", fontSize: "0.9rem", lineHeight: 1.6 }}>
