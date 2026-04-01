@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatedGroup } from "@/components/ui/animated-group";
-import { DottedSurface } from "@/components/ui/dotted-surface-lite";
+import { DottedSurface } from "@/components/ui/dotted-surface";
 import AnimatedTextCycle from "@/components/ui/animated-text-cycle";
 import { motion } from "framer-motion";
 
