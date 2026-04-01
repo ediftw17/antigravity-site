@@ -7,6 +7,7 @@ import {
   ArrowRight, Sparkles, CheckCircle, Star,
 } from "lucide-react";
 import { motion, useScroll, useTransform, useInView, useSpring } from "framer-motion";
+import { AnimatedBlobs } from "@/components/ui/animated-blobs";
 
 export default function About() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -54,8 +55,7 @@ export default function About() {
       ref={sectionRef}
       style={{ width: "100%", padding: "6rem 1rem", background: "linear-gradient(180deg, var(--bg) 0%, #111 100%)", color: "var(--fg)", overflow: "hidden", position: "relative" }}
     >
-      <motion.div className="absolute top-20 left-10 w-64 h-64 rounded-full blur-3xl" style={{ background: "rgba(245,245,245,0.02)", y: y1 }} />
-      <motion.div className="absolute bottom-20 right-10 w-80 h-80 rounded-full blur-3xl" style={{ background: "rgba(245,245,245,0.015)", y: y2 }} />
+      <AnimatedBlobs />
 
       <motion.div style={{ maxWidth: "1200px", margin: "0 auto", position: "relative", zIndex: 10 }} initial="hidden" animate={isInView ? "visible" : "hidden"} variants={containerVariants}>
 

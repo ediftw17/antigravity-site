@@ -1,5 +1,7 @@
 "use client";
 
+import { AnimatedBlobs } from "@/components/ui/animated-blobs";
+
 const services = [
   {
     number: "01",
@@ -45,8 +47,11 @@ export default function Services() {
       id="services"
       style={{
         padding: "8rem 0 0",
+        position: "relative",
+        overflow: "hidden",
       }}
     >
+      <AnimatedBlobs />
       {/* Section header */}
       <div
         style={{

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { AnimatedBlobs } from "@/components/ui/animated-blobs";
 
 interface FAQItem {
   question: string;
@@ -44,8 +45,11 @@ export default function FAQ() {
       id="faq"
       style={{
         padding: "8rem 0 0",
+        position: "relative",
+        overflow: "hidden",
       }}
     >
+      <AnimatedBlobs />
       {/* Section header */}
       <div
         style={{

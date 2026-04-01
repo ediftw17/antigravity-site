@@ -1,6 +1,7 @@
 "use client";
 
 import { MessageSquare, Code, Rocket } from "lucide-react";
+import { AnimatedBlobs } from "@/components/ui/animated-blobs";
 import type React from "react";
 
 interface Step {
@@ -55,8 +56,11 @@ export default function HowItWorks() {
       id="process"
       style={{
         padding: "8rem 0 0",
+        position: "relative",
+        overflow: "hidden",
       }}
     >
+      <AnimatedBlobs />
       {/* Section header */}
       <div
         style={{
