@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatedGroup } from "@/components/ui/animated-group";
-import { DottedSurface } from "@/components/ui/dotted-surface";
+import { DottedSurface } from "@/components/ui/dotted-surface-lite";
 import AnimatedTextCycle from "@/components/ui/animated-text-cycle";
 import { motion } from "framer-motion";
 
@@ -44,7 +44,7 @@ export default function Hero() {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        padding: "0 2rem 8rem",
+        padding: "0 2rem 14rem",
         paddingTop: "0",
         position: "relative",
         overflow: "hidden",

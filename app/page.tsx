@@ -1,5 +1,6 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import LogoCloud from "@/components/LogoCloud";
@@ -7,15 +8,15 @@ import ProjectShowcase from "@/components/ProjectShowcase";
 import About from "@/components/About";
 import Services from "@/components/Services";
 import HowItWorks from "@/components/HowItWorks";
-import TestimonialsA from "@/components/TestimonialsA";
-import TestimonialsB from "@/components/TestimonialsB";
-import TestimonialsC from "@/components/TestimonialsC";
-import TestimonialsD from "@/components/TestimonialsD";
-import TestimonialsE from "@/components/TestimonialsE";
 import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
 import { ParallaxSection } from "@/components/ui/parallax-section";
+
+const TestimonialsA = dynamic(() => import("@/components/TestimonialsA"), { ssr: false });
+const TestimonialsB = dynamic(() => import("@/components/TestimonialsB"), { ssr: false });
+const TestimonialsC = dynamic(() => import("@/components/TestimonialsC"), { ssr: false });
+const TestimonialsD = dynamic(() => import("@/components/TestimonialsD"), { ssr: false });
+const TestimonialsE = dynamic(() => import("@/components/TestimonialsE"), { ssr: false });
 
 export default function Home() {
   return (
