@@ -19,6 +19,9 @@ export default function Footer() {
         padding: "3rem 2rem 2rem",
         maxWidth: "1400px",
         margin: "0 auto",
+        background: "var(--bg)",
+        position: "relative",
+        zIndex: 10,
       }}
     >
       {/* Line navigation */}

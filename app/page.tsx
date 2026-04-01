@@ -58,7 +58,7 @@ export default function Home() {
         </div>
       </ParallaxSection>
       <ParallaxSection><FAQ /></ParallaxSection>
-      <ParallaxSection><Contact /></ParallaxSection>
+      <Contact />
       <Footer />
     </main>
   );
