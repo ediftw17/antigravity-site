@@ -47,19 +47,20 @@ export default function Footer() {
             <span
               style={{
                 display: "block",
-                height: "1px",
-                width: i === 0 ? "48px" : "24px",
-                background: i === 0 ? "var(--fg)" : "rgba(245,245,245,0.15)",
+                height: "2px",
+                width: i === 0 ? "48px" : "32px",
+                background: i === 0 ? "var(--fg)" : "rgba(245,245,245,0.35)",
                 transition: "all 0.4s ease-out",
               }}
               className="footer-line"
             />
             <span
               style={{
-                fontSize: "0.65rem",
-                letterSpacing: "0.12em",
+                fontSize: "0.75rem",
+                letterSpacing: "0.1em",
                 textTransform: "uppercase",
-                color: i === 0 ? "var(--fg-muted)" : "var(--fg-subtle)",
+                fontWeight: 500,
+                color: i === 0 ? "var(--fg)" : "var(--fg-muted)",
                 transition: "color 0.3s ease",
               }}
               className="footer-line-label"
