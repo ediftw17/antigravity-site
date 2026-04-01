@@ -38,7 +38,7 @@ function FloatingPaths({ position }: { position: number }) {
             d={path.d}
             stroke="currentColor"
             strokeWidth={path.width}
-            strokeOpacity={0.1 + path.id * 0.03}
+            strokeOpacity={(0.1 + path.id * 0.03) * 0.15}
             initial={{ pathLength: 0.3, opacity: 0.6 }}
             animate={{
               pathLength: 1,
@@ -123,7 +123,6 @@ export default function Contact() {
           </div>
         </div>
 
-        {/* Footer nav lines */}
         <div
           style={{
             borderTop: "1px solid var(--border)",
@@ -131,52 +130,6 @@ export default function Contact() {
             paddingTop: "2rem",
           }}
         >
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "16px",
-              marginBottom: "2rem",
-              flexWrap: "wrap",
-            }}
-          >
-            {navLinks.map((link, i) => (
-              <a
-                key={link.label}
-                href={link.href}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "10px",
-                  textDecoration: "none",
-                  padding: "6px 0",
-                }}
-              >
-                <span
-                  style={{
-                    display: "block",
-                    height: "2px",
-                    width: i === 0 ? "48px" : "32px",
-                    background: i === 0 ? "var(--fg)" : "rgba(245,245,245,0.35)",
-                    transition: "all 0.4s ease-out",
-                  }}
-                />
-                <span
-                  style={{
-                    fontSize: "0.75rem",
-                    letterSpacing: "0.1em",
-                    textTransform: "uppercase",
-                    fontWeight: 500,
-                    color: i === 0 ? "var(--fg)" : "var(--fg-muted)",
-                    transition: "color 0.3s ease",
-                  }}
-                >
-                  {link.label}
-                </span>
-              </a>
-            ))}
-          </div>
-
           <span style={{ fontSize: "0.75rem", color: "var(--fg-subtle)" }}>
             &copy; {year} Nule &amp; Co.
           </span>
