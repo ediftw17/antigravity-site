@@ -96,10 +96,10 @@ export default function Home() {
             <ParallaxSection>
               <Contact />
             </ParallaxSection>
-            <Footer />
           </div>
         </motion.div>
       </div>
+      <Footer />
     </main>
   );
 }

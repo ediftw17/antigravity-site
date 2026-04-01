@@ -86,7 +86,6 @@ export default function Footer() {
         </span>
 
         <div style={{ display: "flex", gap: "2rem", alignItems: "center" }}>
-          <span className="footer-text">Israel &mdash; Global</span>
           <a
             href="mailto:hello@nule.io"
             className="footer-text"
