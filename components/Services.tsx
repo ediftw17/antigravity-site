@@ -48,7 +48,6 @@ export default function Services() {
       style={{
         padding: "8rem 0 0",
         position: "relative",
-        overflow: "hidden",
       }}
     >
       <AnimatedBlobs />
