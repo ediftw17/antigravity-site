@@ -53,7 +53,7 @@ export default function About() {
     <section
       id="about"
       ref={sectionRef}
-      style={{ width: "100%", padding: "6rem 1rem", background: "linear-gradient(180deg, var(--bg) 0%, #111 100%)", color: "var(--fg)", overflow: "hidden", position: "relative" }}
+      style={{ width: "100%", padding: "6rem 1rem", background: "linear-gradient(180deg, var(--bg) 0%, #111 100%)", color: "var(--fg)", position: "relative" }}
     >
       <AnimatedBlobs />
 
