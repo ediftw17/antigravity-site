@@ -1,5 +1,7 @@
 "use client";
 
+import { motion } from "framer-motion";
+
 const navLinks = [
   { label: "Work", href: "#work" },
   { label: "About", href: "#about" },
@@ -9,6 +11,52 @@ const navLinks = [
   { label: "Contact", href: "#contact" },
 ];
 
+function FloatingPaths({ position }: { position: number }) {
+  const paths = Array.from({ length: 36 }, (_, i) => ({
+    id: i,
+    d: `M-${380 - i * 5 * position} -${189 + i * 6}C-${
+      380 - i * 5 * position
+    } -${189 + i * 6} -${312 - i * 5 * position} ${216 - i * 6} ${
+      152 - i * 5 * position
+    } ${343 - i * 6}C${616 - i * 5 * position} ${470 - i * 6} ${
+      684 - i * 5 * position
+    } ${875 - i * 6} ${684 - i * 5 * position} ${875 - i * 6}`,
+    width: 0.5 + i * 0.03,
+  }));
+
+  return (
+    <div style={{ position: "absolute", inset: 0, pointerEvents: "none" }}>
+      <svg
+        style={{ width: "100%", height: "100%", color: "var(--fg)" }}
+        viewBox="0 0 696 316"
+        fill="none"
+      >
+        <title>Background Paths</title>
+        {paths.map((path) => (
+          <motion.path
+            key={path.id}
+            d={path.d}
+            stroke="currentColor"
+            strokeWidth={path.width}
+            strokeOpacity={0.1 + path.id * 0.03}
+            initial={{ pathLength: 0.3, opacity: 0.6 }}
+            animate={{
+              pathLength: 1,
+              opacity: [0.3, 0.6, 0.3],
+              pathOffset: [0, 1, 0],
+            }}
+            transition={{
+              duration: 20 + Math.random() * 10,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+          />
+        ))}
+      </svg>
+    </div>
+  );
+}
+
 export default function Contact() {
   const year = new Date().getFullYear();
 
@@ -16,6 +64,8 @@ export default function Contact() {
     <section
       id="contact"
       style={{
+        position: "relative",
+        overflow: "hidden",
         padding: "0 2rem 4rem",
         maxWidth: "1400px",
         margin: "0 auto",
@@ -23,106 +73,114 @@ export default function Contact() {
     >
       <hr className="rule" style={{ marginBottom: "5rem" }} />
 
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "2.5rem",
-        }}
-      >
-        <span className="section-label">Get in Touch</span>
+      {/* Animated background paths */}
+      <div style={{ position: "absolute", inset: 0 }}>
+        <FloatingPaths position={1} />
+        <FloatingPaths position={-1} />
+      </div>
 
-        <h2 className="contact-heading">
-          Let&apos;s build<br />something sharp.
-        </h2>
-
+      <div style={{ position: "relative", zIndex: 1 }}>
         <div
           style={{
             display: "flex",
             flexDirection: "column",
-            gap: "1.25rem",
+            gap: "2.5rem",
           }}
         >
-          <p
+          <span className="section-label">Get in Touch</span>
+
+          <h2 className="contact-heading">
+            Let&apos;s build<br />something sharp.
+          </h2>
+
+          <div
             style={{
-              fontSize: "0.9375rem",
-              color: "var(--fg-muted)",
-              lineHeight: 1.6,
-              maxWidth: "44ch",
+              display: "flex",
+              flexDirection: "column",
+              gap: "1.25rem",
             }}
           >
-            Have a project in mind? Tell us what you&apos;re building and
-            we&apos;ll take it from there. No lengthy briefs required —
-            a quick intro is enough to get started.
-          </p>
-
-          <a
-            href="mailto:hello@nule.io"
-            className="contact-email"
-            style={{ alignSelf: "flex-start" }}
-          >
-            hello@nule.io
-          </a>
-        </div>
-      </div>
-
-      {/* Footer lines - directly in Contact so they always render */}
-      <div
-        style={{
-          borderTop: "1px solid var(--border)",
-          marginTop: "8rem",
-          paddingTop: "2rem",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "16px",
-            marginBottom: "2rem",
-            flexWrap: "wrap",
-          }}
-        >
-          {navLinks.map((link, i) => (
-            <a
-              key={link.label}
-              href={link.href}
+            <p
               style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "10px",
-                textDecoration: "none",
-                padding: "6px 0",
+                fontSize: "0.9375rem",
+                color: "var(--fg-muted)",
+                lineHeight: 1.6,
+                maxWidth: "44ch",
               }}
             >
-              <span
-                style={{
-                  display: "block",
-                  height: "2px",
-                  width: i === 0 ? "48px" : "32px",
-                  background: i === 0 ? "var(--fg)" : "rgba(245,245,245,0.35)",
-                  transition: "all 0.4s ease-out",
-                }}
-              />
-              <span
-                style={{
-                  fontSize: "0.75rem",
-                  letterSpacing: "0.1em",
-                  textTransform: "uppercase",
-                  fontWeight: 500,
-                  color: i === 0 ? "var(--fg)" : "var(--fg-muted)",
-                  transition: "color 0.3s ease",
-                }}
-              >
-                {link.label}
-              </span>
+              Have a project in mind? Tell us what you&apos;re building and
+              we&apos;ll take it from there. No lengthy briefs required —
+              a quick intro is enough to get started.
+            </p>
+
+            <a
+              href="mailto:hello@nule.io"
+              className="contact-email"
+              style={{ alignSelf: "flex-start" }}
+            >
+              hello@nule.io
             </a>
-          ))}
+          </div>
         </div>
 
-        <span style={{ fontSize: "0.75rem", color: "var(--fg-subtle)" }}>
-          &copy; {year} Nule &amp; Co.
-        </span>
+        {/* Footer nav lines */}
+        <div
+          style={{
+            borderTop: "1px solid var(--border)",
+            marginTop: "8rem",
+            paddingTop: "2rem",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "16px",
+              marginBottom: "2rem",
+              flexWrap: "wrap",
+            }}
+          >
+            {navLinks.map((link, i) => (
+              <a
+                key={link.label}
+                href={link.href}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "10px",
+                  textDecoration: "none",
+                  padding: "6px 0",
+                }}
+              >
+                <span
+                  style={{
+                    display: "block",
+                    height: "2px",
+                    width: i === 0 ? "48px" : "32px",
+                    background: i === 0 ? "var(--fg)" : "rgba(245,245,245,0.35)",
+                    transition: "all 0.4s ease-out",
+                  }}
+                />
+                <span
+                  style={{
+                    fontSize: "0.75rem",
+                    letterSpacing: "0.1em",
+                    textTransform: "uppercase",
+                    fontWeight: 500,
+                    color: i === 0 ? "var(--fg)" : "var(--fg-muted)",
+                    transition: "color 0.3s ease",
+                  }}
+                >
+                  {link.label}
+                </span>
+              </a>
+            ))}
+          </div>
+
+          <span style={{ fontSize: "0.75rem", color: "var(--fg-subtle)" }}>
+            &copy; {year} Nule &amp; Co.
+          </span>
+        </div>
       </div>
     </section>
   );
