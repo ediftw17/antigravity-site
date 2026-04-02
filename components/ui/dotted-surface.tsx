@@ -25,7 +25,7 @@ export function DottedSurface({ className, children, ...props }: DottedSurfacePr
 		const AMOUNTY = isSafari ? 40 : 60;
 
 		const scene = new THREE.Scene();
-		scene.fog = new THREE.Fog(0xffffff, 1000, 5000);
+		scene.fog = new THREE.Fog(0x0a0a0a, 800, 4000);
 
 		const camera = new THREE.PerspectiveCamera(
 			75,
@@ -43,7 +43,7 @@ export function DottedSurface({ className, children, ...props }: DottedSurfacePr
 		});
 		renderer.setPixelRatio(window.devicePixelRatio);
 		renderer.setSize(window.innerWidth, window.innerHeight);
-		renderer.setClearColor(scene.fog.color, 0);
+		renderer.setClearColor(0x000000, 0);
 
 		containerRef.current.appendChild(renderer.domElement);
 

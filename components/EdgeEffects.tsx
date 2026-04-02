@@ -12,7 +12,7 @@ export default function EdgeEffects() {
         height: "60px",
         backdropFilter: "blur(12px)",
         WebkitBackdropFilter: "blur(12px)",
-        background: "rgba(10, 10, 10, 0.3)",
+        background: "rgba(10, 10, 10, 0.6)",
         zIndex: 90,
         pointerEvents: "none",
       }} />
