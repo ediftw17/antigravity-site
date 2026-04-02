@@ -49,17 +49,18 @@ export default function Hero() {
         overflow: "hidden",
       }}
     >
-      {/* DottedSurface */}
+      {/* DottedSurface — scaled up, behind text */}
       <div style={{
         position: "absolute",
-        top: "25%",
-        left: 0,
-        right: 0,
+        top: 0,
+        left: "-25%",
+        right: "-25%",
         bottom: 0,
         zIndex: 0,
         overflow: "hidden",
-        maskImage: "linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)",
-        WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)",
+        maskImage: "linear-gradient(to bottom, transparent 0%, black 25%, black 75%, transparent 100%)",
+        WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 25%, black 75%, transparent 100%)",
+        opacity: 0.5,
       }}>
         <DottedSurface />
       </div>
