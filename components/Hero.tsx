@@ -48,22 +48,22 @@ export default function Hero() {
         overflow: "hidden",
       }}
     >
-      {/* DottedSurface with perspective warp — pinned to bottom half */}
+      {/* DottedSurface with perspective warp */}
       <div style={{
         position: "absolute",
-        left: "-10%",
-        right: "-10%",
-        bottom: "-10%",
-        height: "65%",
-        perspective: "600px",
-        perspectiveOrigin: "50% 30%",
+        inset: 0,
         zIndex: 0,
+        perspective: "600px",
+        perspectiveOrigin: "50% 35%",
       }}>
         <div style={{
-          width: "100%",
-          height: "100%",
-          transform: "rotateX(18deg) scale(1.3)",
-          transformOrigin: "50% 50%",
+          position: "absolute",
+          top: "40%",
+          left: "-5%",
+          right: "-5%",
+          bottom: "-5%",
+          transform: "rotateX(14deg) scale(1.2)",
+          transformOrigin: "50% 40%",
         }}>
           <DottedSurface />
         </div>
