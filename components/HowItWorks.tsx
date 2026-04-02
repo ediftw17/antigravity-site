@@ -1,9 +1,19 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { MessageSquare, Code, Rocket } from "lucide-react";
 import { AnimatedBlobs } from "@/components/ui/animated-blobs";
 import { TextScramble } from "@/components/ui/text-scramble";
 import type React from "react";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] as const },
+  }),
+};
 
 interface Step {
   icon: React.ReactNode;
@@ -109,9 +119,9 @@ export default function HowItWorks() {
           padding: "2rem 2rem 0",
         }}
       >
-        <div className="hiw-grid">
+        <motion.div className="hiw-grid" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }}>
           {steps.map((step, index) => (
-            <div key={index} className="hiw-card">
+            <motion.div key={index} className="hiw-card" variants={fadeUp} custom={index}>
               <div className="hiw-card-icon">{step.icon}</div>
               <h3 className="hiw-card-title">{step.title}</h3>
               <p className="hiw-card-desc">{step.description}</p>
@@ -123,9 +133,9 @@ export default function HowItWorks() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

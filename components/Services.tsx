@@ -1,7 +1,17 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { AnimatedBlobs } from "@/components/ui/animated-blobs";
 import { TextScramble } from "@/components/ui/text-scramble";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] as const },
+  }),
+};
 
 const services = [
   {
@@ -68,15 +78,15 @@ export default function Services() {
 
       <hr className="rule" style={{ marginBottom: 0 }} />
 
-      <div className="services-grid">
-        {services.map((s) => (
-          <div key={s.number} className="service-item">
+      <motion.div className="services-grid" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.15 }}>
+        {services.map((s, i) => (
+          <motion.div key={s.number} className="service-item" variants={fadeUp} custom={i}>
             <div className="service-number">{s.number}</div>
             <div className="service-name">{s.name}</div>
             <div className="service-desc">{s.description}</div>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 }

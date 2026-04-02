@@ -1,8 +1,18 @@
 "use client";
 
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { AnimatedBlobs } from "@/components/ui/animated-blobs";
 import { TextScramble } from "@/components/ui/text-scramble";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] as const },
+  }),
+};
 
 interface FAQItem {
   question: string;
@@ -74,7 +84,7 @@ export default function FAQ() {
         }}
       >
         {faqs.map((faq, index) => (
-          <div key={index} className="faq-item">
+          <motion.div key={index} className="faq-item" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.5 }} variants={fadeUp} custom={index}>
             <button
               className="faq-trigger"
               onClick={() => toggle(index)}
@@ -94,7 +104,7 @@ export default function FAQ() {
             <div className={`faq-answer-wrap ${openIndex === index ? "open" : ""}`}>
               <p className="faq-answer">{faq.answer}</p>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </section>

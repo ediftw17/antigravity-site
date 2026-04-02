@@ -48,31 +48,15 @@ export default function Hero() {
         overflow: "hidden",
       }}
     >
-      <DottedSurface />
-
-      {/* Top fade — blurs dot animation under the nav, twice headline height */}
+      {/* DottedSurface with mask so dots fade at edges */}
       <div style={{
         position: "absolute",
-        top: 0,
-        left: 0,
-        right: 0,
-        height: "clamp(10rem, 28vw, 22rem)",
-        background: "linear-gradient(to bottom, var(--bg) 0%, var(--bg) 15%, transparent 100%)",
-        zIndex: 2,
-        pointerEvents: "none",
-      }} />
-
-      {/* Bottom fade — blurs dot animation into the rest of the page */}
-      <div style={{
-        position: "absolute",
-        bottom: 0,
-        left: 0,
-        right: 0,
-        height: "clamp(10rem, 28vw, 22rem)",
-        background: "linear-gradient(to top, var(--bg) 0%, var(--bg) 15%, transparent 100%)",
-        zIndex: 2,
-        pointerEvents: "none",
-      }} />
+        inset: 0,
+        maskImage: "linear-gradient(to bottom, transparent 0%, black 25%, black 75%, transparent 100%)",
+        WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 25%, black 75%, transparent 100%)",
+      }}>
+        <DottedSurface />
+      </div>
 
       <div style={{ maxWidth: "1400px", width: "100%", textAlign: "center", position: "relative", zIndex: 1 }}>
         <AnimatedGroup variants={heroVariants}>
@@ -87,8 +71,9 @@ export default function Hero() {
             Nule & Co.
           </h1>
 
-          <p className="hero-tagline" style={{ maxWidth: "800px", margin: "0 auto 1rem", position: "relative" }}>
-            Your business deserves a <AnimatedTextCycle
+          <p className="hero-tagline" style={{ maxWidth: "800px", margin: "0 auto 1rem", position: "relative", display: "flex", alignItems: "baseline", justifyContent: "center", gap: "0.3em", flexWrap: "wrap" }}>
+            <span>Your business deserves a</span>
+            <AnimatedTextCycle
               words={["better website", "stronger brand", "real online presence", "site that converts", "competitive edge"]}
               interval={3000}
               className="hero-cycle-word"

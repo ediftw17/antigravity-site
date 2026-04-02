@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect, useCallback } from "react";
+import { motion } from "framer-motion";
 import { TextScramble } from "@/components/ui/text-scramble";
 
 interface Project {
@@ -164,10 +165,14 @@ export default function ProjectShowcase() {
       {/* Project list */}
       <div style={{ maxWidth: "1400px", margin: "0 auto", padding: "0 2rem" }}>
         {projects.map((project, index) => (
-          <a
+          <motion.a
             key={project.title}
             href={project.link}
             className="showcase-row"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ duration: 0.5, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
             onMouseEnter={() => setHoveredIndex(index)}
             onMouseLeave={() => setHoveredIndex(null)}
             style={{ display: "block", textDecoration: "none", color: "inherit" }}
@@ -179,7 +184,7 @@ export default function ProjectShowcase() {
               </div>
               <span className="showcase-year">{project.year}</span>
             </div>
-          </a>
+          </motion.a>
         ))}
         <div style={{ borderTop: "1px solid var(--border)" }} />
       </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { InfiniteSlider } from "@/components/ui/infinite-slider";
 import { TextScramble } from "@/components/ui/text-scramble";
 
@@ -18,7 +19,11 @@ const tools = [
 
 export default function LogoCloud() {
   return (
-    <section
+    <motion.section
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.5 }}
+      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       style={{
         padding: "3rem 0",
         maxWidth: "900px",
@@ -54,6 +59,6 @@ export default function LogoCloud() {
           ))}
         </InfiniteSlider>
       </div>
-    </section>
+    </motion.section>
   );
 }
