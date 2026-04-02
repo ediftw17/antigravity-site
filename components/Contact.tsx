@@ -78,8 +78,8 @@ export default function Contact() {
       <div style={{
         position: "absolute",
         inset: 0,
-        maskImage: "linear-gradient(to bottom, transparent 0%, black 25%, black 75%, transparent 100%)",
-        WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 25%, black 75%, transparent 100%)",
+        maskImage: "radial-gradient(ellipse 70% 60% at 50% 50%, black 30%, transparent 80%)",
+        WebkitMaskImage: "radial-gradient(ellipse 70% 60% at 50% 50%, black 30%, transparent 80%)",
       }}>
         <FloatingPaths position={1} />
         <FloatingPaths position={-1} />
