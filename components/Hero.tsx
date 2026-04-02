@@ -42,13 +42,37 @@ export default function Hero() {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        padding: "0 2rem 14rem",
+        padding: "0 2rem 8rem",
         paddingTop: "0",
         position: "relative",
         overflow: "hidden",
       }}
     >
       <DottedSurface />
+
+      {/* Top fade — blurs dot animation under the nav, twice headline height */}
+      <div style={{
+        position: "absolute",
+        top: 0,
+        left: 0,
+        right: 0,
+        height: "clamp(10rem, 28vw, 22rem)",
+        background: "linear-gradient(to bottom, var(--bg) 0%, var(--bg) 15%, transparent 100%)",
+        zIndex: 2,
+        pointerEvents: "none",
+      }} />
+
+      {/* Bottom fade — blurs dot animation into the rest of the page */}
+      <div style={{
+        position: "absolute",
+        bottom: 0,
+        left: 0,
+        right: 0,
+        height: "clamp(10rem, 28vw, 22rem)",
+        background: "linear-gradient(to top, var(--bg) 0%, var(--bg) 15%, transparent 100%)",
+        zIndex: 2,
+        pointerEvents: "none",
+      }} />
 
       <div style={{ maxWidth: "1400px", width: "100%", textAlign: "center", position: "relative", zIndex: 1 }}>
         <AnimatedGroup variants={heroVariants}>
@@ -119,7 +143,7 @@ export default function Hero() {
             </a>
           </div>
 
-          <p style={{ fontSize: "0.7rem", color: "var(--fg-subtle)", letterSpacing: "0.05em" }}>
+          <p style={{ fontSize: "0.7rem", color: "var(--fg-muted)", letterSpacing: "0.05em" }}>
             Transparent pricing. Infrastructure from $149/mo.
           </p>
         </AnimatedGroup>
