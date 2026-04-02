@@ -57,8 +57,8 @@ export default function Hero() {
         bottom: 0,
         zIndex: 0,
         overflow: "hidden",
-        maskImage: "linear-gradient(to bottom, transparent 0%, black 15%)",
-        WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 15%)",
+        maskImage: "linear-gradient(to bottom, transparent 0%, black 15%, black 75%, transparent 100%)",
+        WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 15%, black 75%, transparent 100%)",
       }}>
         <DottedSurface />
       </div>
