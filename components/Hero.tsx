@@ -48,12 +48,16 @@ export default function Hero() {
         overflow: "hidden",
       }}
     >
-      {/* DottedSurface with perspective warp — stretches at edges */}
+      {/* DottedSurface with perspective warp — pinned to bottom half */}
       <div style={{
         position: "absolute",
-        inset: "-10%",
+        left: "-10%",
+        right: "-10%",
+        bottom: "-10%",
+        height: "65%",
         perspective: "600px",
-        perspectiveOrigin: "50% 35%",
+        perspectiveOrigin: "50% 30%",
+        zIndex: 0,
       }}>
         <div style={{
           width: "100%",
