@@ -1,9 +1,64 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { CheckCircle, ArrowRight } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { TextScramble } from "@/components/ui/text-scramble";
+
+function CountDown({ target, duration = 1.2, prefix = "$", suffix = "" }: {
+  target: number;
+  duration?: number;
+  prefix?: string;
+  suffix?: string;
+}) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, amount: 0.5 });
+  const [display, setDisplay] = useState(Math.round(target * 2));
+
+  useEffect(() => {
+    if (!inView) return;
+    const start = Math.round(target * 2);
+    const startTime = performance.now();
+    let raf: number;
+
+    const tick = (now: number) => {
+      const elapsed = (now - startTime) / 1000;
+      const progress = Math.min(elapsed / duration, 1);
+      // ease-out cubic
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = Math.round(start - (start - target) * eased);
+      setDisplay(current);
+      if (progress < 1) raf = requestAnimationFrame(tick);
+    };
+
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [inView, target, duration]);
+
+  return <span ref={ref}>{prefix}{display.toLocaleString()}{suffix}</span>;
+}
+
+function AddonPrice({ price }: { price: string }) {
+  // Handle "$149 + $49/mo" or "$49/mo" or "$199"
+  const parts = price.split(" + ");
+  return (
+    <>
+      {parts.map((part, i) => {
+        const match = part.match(/^\$(\d+)(.*)/);
+        if (!match) return part;
+        const num = parseInt(match[1]);
+        const rest = match[2]; // "/mo" or ""
+        return (
+          <span key={i}>
+            {i > 0 && " + "}
+            <CountDown target={num} duration={0.8} />
+            {rest}
+          </span>
+        );
+      })}
+    </>
+  );
+}
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -113,13 +168,13 @@ export default function Pricing() {
             <div style={{ marginTop: "1.5rem" }}>
               <div style={{ marginBottom: "2.5rem" }}>
                 <div style={{ fontSize: "0.8125rem", color: "var(--fg-muted)", marginBottom: "0.375rem" }}>One-time build</div>
-                <div style={{ fontSize: "2.5rem", fontWeight: 600, letterSpacing: "-0.03em" }}>From $997</div>
+                <div style={{ fontSize: "2.5rem", fontWeight: 600, letterSpacing: "-0.03em" }}>From <CountDown target={997} /></div>
                 <div style={{ fontSize: "0.8125rem", color: "var(--fg-muted)", marginTop: "0.25rem" }}>Custom design built for your industry. Final scope depends on your needs — most local service sites land between $997 and $1,500.</div>
               </div>
               <div style={{ width: "40px", height: "1px", background: "var(--border)", marginBottom: "2.5rem" }} />
               <div>
                 <div style={{ fontSize: "0.8125rem", color: "var(--fg-muted)", marginBottom: "0.375rem" }}>Monthly infrastructure</div>
-                <div style={{ fontSize: "2.5rem", fontWeight: 600, letterSpacing: "-0.03em" }}>$149<span style={{ fontSize: "1rem", fontWeight: 400 }}>/mo</span></div>
+                <div style={{ fontSize: "2.5rem", fontWeight: 600, letterSpacing: "-0.03em" }}><CountDown target={149} /><span style={{ fontSize: "1rem", fontWeight: 400 }}>/mo</span></div>
                 <div style={{ fontSize: "0.8125rem", color: "var(--fg-muted)", marginTop: "0.25rem" }}>Hosting, SSL, domain, security, minor updates</div>
               </div>
             </div>
@@ -233,7 +288,7 @@ export default function Pricing() {
                 <p style={{ fontSize: "0.8125rem", color: "var(--fg-muted)", margin: 0 }}>{addon.description}</p>
               </div>
               <div style={{ fontSize: "1rem", fontWeight: 500, whiteSpace: "nowrap", textAlign: "right" }}>
-                {addon.price}
+                <AddonPrice price={addon.price} />
               </div>
             </motion.div>
           ))}

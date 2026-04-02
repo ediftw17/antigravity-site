@@ -51,14 +51,14 @@ export default function Hero() {
       {/* DottedSurface — positioned in bottom portion */}
       <div style={{
         position: "absolute",
-        top: "35%",
+        top: "25%",
         left: 0,
         right: 0,
         bottom: 0,
         zIndex: 0,
         overflow: "hidden",
-        maskImage: "linear-gradient(to bottom, transparent 0%, black 20%)",
-        WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 20%)",
+        maskImage: "linear-gradient(to bottom, transparent 0%, black 15%)",
+        WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 15%)",
       }}>
         <DottedSurface />
       </div>

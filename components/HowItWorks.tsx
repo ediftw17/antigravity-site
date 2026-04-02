@@ -1,64 +1,21 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MessageSquare, Code, Rocket } from "lucide-react";
-import { AnimatedBlobs } from "@/components/ui/animated-blobs";
 import { TextScramble } from "@/components/ui/text-scramble";
-import type React from "react";
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
+  hidden: { opacity: 0, y: 16 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] as const },
+    transition: { duration: 0.5, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] as const },
   }),
 };
 
-interface Step {
-  icon: React.ReactNode;
-  number: string;
-  title: string;
-  description: string;
-  benefits: string[];
-}
-
-const steps: Step[] = [
-  {
-    icon: <MessageSquare size={24} />,
-    number: "01",
-    title: "Tell Us About Your Business",
-    description:
-      "Share your details -- services, location, what sets you apart.",
-    benefits: [
-      "15-minute kickoff call",
-      "No technical knowledge needed",
-      "We research your competition",
-    ],
-  },
-  {
-    icon: <Code size={24} />,
-    number: "02",
-    title: "We Build Your Site",
-    description:
-      "Our AI-powered workflow delivers a professional site in days.",
-    benefits: [
-      "Mobile-first responsive design",
-      "SEO optimized from launch",
-      "Booking and contact forms included",
-    ],
-  },
-  {
-    icon: <Rocket size={24} />,
-    number: "03",
-    title: "Go Live & Grow",
-    description: "Launch and start converting visitors into customers.",
-    benefits: [
-      "Fast global hosting",
-      "Google Business integration",
-      "Ongoing support included",
-    ],
-  },
+const steps = [
+  { n: "01", title: "Scope call", body: "15 minutes. We learn your business, your market, what you need the site to do." },
+  { n: "02", title: "Free preview", body: "You see a mockup before paying anything. No pressure, no commitment." },
+  { n: "03", title: "Go live", body: "We build, you review, we launch. 5–7 days from scope call to live site." },
 ];
 
 export default function HowItWorks() {
@@ -70,7 +27,6 @@ export default function HowItWorks() {
         position: "relative",
       }}
     >
-      <AnimatedBlobs />
       {/* Section header */}
       <div
         style={{
@@ -90,53 +46,72 @@ export default function HowItWorks() {
 
       <hr className="rule" style={{ marginBottom: 0 }} />
 
-      {/* Step indicators with connecting line */}
-      <div
+      {/* Steps grid */}
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
         style={{
           maxWidth: "1400px",
           margin: "0 auto",
           padding: "3rem 2rem 0",
-          position: "relative",
+          display: "grid",
+          gridTemplateColumns: "repeat(3, 1fr)",
+          gap: "3rem",
         }}
+        className="hiw-steps-grid"
       >
-        <div className="hiw-indicators">
-          {/* Connecting line */}
-          <div className="hiw-line" aria-hidden="true" />
-
-          {steps.map((step, index) => (
-            <div key={index} className="hiw-indicator">
-              {step.number}
+        {steps.map((step, i) => {
+          const base = i * 3;
+          return (
+            <div key={step.n}>
+              <motion.div
+                variants={fadeUp}
+                custom={base}
+                style={{
+                  fontSize: "3rem",
+                  fontWeight: 300,
+                  color: "rgba(245,245,245,0.12)",
+                  letterSpacing: "-0.04em",
+                  lineHeight: 1,
+                  marginBottom: "1rem",
+                }}
+              >
+                {step.n}
+              </motion.div>
+              <motion.h3
+                variants={fadeUp}
+                custom={base + 1}
+                style={{
+                  fontSize: "1rem",
+                  fontWeight: 500,
+                  marginBottom: "0.5rem",
+                }}
+              >
+                {step.title}
+              </motion.h3>
+              <motion.p
+                variants={fadeUp}
+                custom={base + 2}
+                style={{
+                  fontSize: "0.8125rem",
+                  color: "var(--fg-muted)",
+                  lineHeight: 1.7,
+                  margin: 0,
+                }}
+              >
+                {step.body}
+              </motion.p>
             </div>
-          ))}
-        </div>
-      </div>
+          );
+        })}
+      </motion.div>
 
-      {/* Steps grid */}
-      <div
-        style={{
-          maxWidth: "1400px",
-          margin: "0 auto",
-          padding: "2rem 2rem 0",
-        }}
-      >
-        <motion.div className="hiw-grid" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }}>
-          {steps.map((step, index) => (
-            <motion.div key={index} className="hiw-card" variants={fadeUp} custom={index}>
-              <div className="hiw-card-icon">{step.icon}</div>
-              <h3 className="hiw-card-title">{step.title}</h3>
-              <p className="hiw-card-desc">{step.description}</p>
-              <ul className="hiw-benefits">
-                {step.benefits.map((benefit, i) => (
-                  <li key={i} className="hiw-benefit">
-                    <span className="hiw-benefit-dot" />
-                    <span>{benefit}</span>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          ))}
-        </motion.div>
-      </div>
+      <style>{`
+        @media (max-width: 600px) {
+          .hiw-steps-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
+        }
+      `}</style>
     </section>
   );
 }

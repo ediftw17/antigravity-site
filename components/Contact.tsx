@@ -75,12 +75,16 @@ export default function Contact() {
     >
       <hr className="rule" style={{ marginBottom: "5rem" }} />
 
-      {/* Animated background paths */}
+      {/* Animated background paths — full viewport width, fades on left */}
       <div style={{
         position: "absolute",
-        inset: 0,
-        maskImage: "radial-gradient(ellipse 70% 60% at 50% 50%, black 30%, transparent 80%)",
-        WebkitMaskImage: "radial-gradient(ellipse 70% 60% at 50% 50%, black 30%, transparent 80%)",
+        top: 0,
+        bottom: 0,
+        left: "50%",
+        transform: "translateX(-50%)",
+        width: "100vw",
+        maskImage: "linear-gradient(to right, transparent 0%, black 25%, black 100%)",
+        WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 25%, black 100%)",
       }}>
         <FloatingPaths position={1} />
         <FloatingPaths position={-1} />
