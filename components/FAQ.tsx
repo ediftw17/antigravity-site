@@ -20,7 +20,7 @@ const faqs: FAQItem[] = [
   },
   {
     question: "How much does it cost?",
-    answer: "Standard sites start at $500. No hidden fees.",
+    answer: "Sites start from $997. Infrastructure is $149/mo. No hidden fees.",
   },
   {
     question: "Do you handle hosting?",
