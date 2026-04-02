@@ -41,9 +41,9 @@ export default function Hero() {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        justifyContent: "center",
-        padding: "0 2rem 8rem",
-        paddingTop: "0",
+        justifyContent: "flex-start",
+        padding: "0 2rem 0",
+        paddingTop: "clamp(7rem, 15vh, 12rem)",
         position: "relative",
         overflow: "hidden",
       }}
