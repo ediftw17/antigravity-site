@@ -19,9 +19,10 @@ export function DottedSurface({ className, children, ...props }: DottedSurfacePr
 	useEffect(() => {
 		if (!containerRef.current) return;
 
+		const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 		const SEPARATION = 150;
-		const AMOUNTX = 40;
-		const AMOUNTY = 60;
+		const AMOUNTX = isSafari ? 28 : 40;
+		const AMOUNTY = isSafari ? 42 : 60;
 
 		const scene = new THREE.Scene();
 		scene.fog = new THREE.Fog(0xffffff, 2000, 10000);
@@ -36,7 +37,8 @@ export function DottedSurface({ className, children, ...props }: DottedSurfacePr
 
 		const renderer = new THREE.WebGLRenderer({
 			alpha: true,
-			antialias: true,
+			antialias: !isSafari,
+			powerPreference: "high-performance",
 		});
 		renderer.setPixelRatio(window.devicePixelRatio);
 		renderer.setSize(window.innerWidth, window.innerHeight);

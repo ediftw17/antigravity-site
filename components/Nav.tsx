@@ -35,6 +35,9 @@ export default function Nav() {
         justifyContent: "space-between",
         background: scrolled ? "rgba(10,10,10,0.85)" : "transparent",
         backdropFilter: scrolled ? "blur(16px)" : "none",
+        WebkitBackdropFilter: scrolled ? "blur(16px)" : "none",
+        transform: "translate3d(0, 0, 0)",
+        willChange: "transform",
         borderBottom: scrolled ? "1px solid rgba(255,255,255,0.06)" : "none",
         transition: "background 0.3s ease, backdrop-filter 0.3s ease, border-color 0.3s ease",
       }}

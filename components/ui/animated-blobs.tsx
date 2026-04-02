@@ -25,6 +25,8 @@ export function AnimatedBlobs() {
           borderRadius: "50%",
           background: "radial-gradient(circle, rgba(245,245,245,0.03) 0%, transparent 70%)",
           filter: "blur(80px)",
+          transform: "translate3d(0, 0, 0)",
+          willChange: "filter, transform",
           pointerEvents: "none",
           zIndex: 0,
         }}
@@ -45,6 +47,8 @@ export function AnimatedBlobs() {
           borderRadius: "50%",
           background: "radial-gradient(circle, rgba(245,245,245,0.025) 0%, transparent 70%)",
           filter: "blur(100px)",
+          transform: "translate3d(0, 0, 0)",
+          willChange: "filter, transform",
           pointerEvents: "none",
           zIndex: 0,
         }}
@@ -66,6 +70,8 @@ export function AnimatedBlobs() {
           borderRadius: "50%",
           background: "radial-gradient(circle, rgba(245,245,245,0.02) 0%, transparent 70%)",
           filter: "blur(90px)",
+          transform: "translate3d(0, 0, 0)",
+          willChange: "filter, transform",
           pointerEvents: "none",
           zIndex: 0,
         }}

@@ -24,7 +24,7 @@ export function ParallaxSection({ children }: { children: React.ReactNode }) {
 
   return (
     <div ref={ref}>
-      <motion.div style={{ y, opacity, scale }}>
+      <motion.div style={{ y, opacity, scale, willChange: "transform, opacity", transform: "translate3d(0, 0, 0)" }}>
         {children}
       </motion.div>
     </div>
