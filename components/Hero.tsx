@@ -53,13 +53,13 @@ export default function Hero() {
       <div style={{
         position: "absolute",
         top: 0,
-        left: "-25%",
-        right: "-25%",
+        left: 0,
+        right: 0,
         bottom: 0,
         zIndex: 0,
         overflow: "hidden",
-        maskImage: "linear-gradient(to bottom, transparent 0%, black 25%, black 75%, transparent 100%)",
-        WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 25%, black 75%, transparent 100%)",
+        maskImage: "radial-gradient(ellipse 80% 70% at 50% 65%, black 30%, transparent 70%)",
+        WebkitMaskImage: "radial-gradient(ellipse 80% 70% at 50% 65%, black 30%, transparent 70%)",
         opacity: 0.5,
       }}>
         <DottedSurface />
