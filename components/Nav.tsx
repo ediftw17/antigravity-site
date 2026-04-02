@@ -13,11 +13,11 @@ export default function Nav() {
   }, []);
 
   const links = [
-    { label: "Work", href: "#work" },
-    { label: "Services", href: "#services" },
+    { label: "Work", href: "/#work" },
+    { label: "Services", href: "/#services" },
     { label: "Pricing", href: "/pricing" },
     { label: "Why Nule", href: "/why-nule" },
-    { label: "Contact", href: "#contact" },
+    { label: "Contact", href: "/#contact" },
   ];
 
   return (
@@ -40,7 +40,7 @@ export default function Nav() {
       }}
     >
       <a
-        href="#"
+        href="/"
         style={{
           fontSize: "0.9375rem",
           fontWeight: 500,
