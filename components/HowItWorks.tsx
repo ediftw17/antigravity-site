@@ -2,6 +2,7 @@
 
 import { MessageSquare, Code, Rocket } from "lucide-react";
 import { AnimatedBlobs } from "@/components/ui/animated-blobs";
+import { TextScramble } from "@/components/ui/text-scramble";
 import type React from "react";
 
 interface Step {
@@ -71,7 +72,7 @@ export default function HowItWorks() {
           justifyContent: "space-between",
         }}
       >
-        <span className="section-label">How It Works</span>
+        <span className="section-label"><TextScramble text="How It Works" /></span>
         <span className="section-label" style={{ opacity: 0.5 }}>
           3 steps
         </span>

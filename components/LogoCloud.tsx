@@ -1,6 +1,7 @@
 "use client";
 
 import { InfiniteSlider } from "@/components/ui/infinite-slider";
+import { TextScramble } from "@/components/ui/text-scramble";
 
 const tools = [
   "Next.js",
@@ -31,7 +32,7 @@ export default function LogoCloud() {
           marginBottom: "1.5rem",
         }}
       >
-        Built with modern tools
+        <TextScramble text="Built with modern tools" />
       </p>
 
       <div className="logo-cloud-mask">

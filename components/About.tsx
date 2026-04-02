@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import { motion, useScroll, useTransform, useInView, useSpring } from "framer-motion";
 import { AnimatedBlobs } from "@/components/ui/animated-blobs";
+import { TextScramble } from "@/components/ui/text-scramble";
 
 export default function About() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -61,7 +62,7 @@ export default function About() {
 
         <motion.div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginBottom: "1.5rem" }} variants={itemVariants}>
           <span className="section-label" style={{ marginBottom: "0.5rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
-            <Zap className="w-4 h-4" /> What We Do
+            <Zap className="w-4 h-4" /> <TextScramble text="What We Do" />
           </span>
           <h2 style={{ fontSize: "clamp(2rem, 5vw, 3rem)", fontWeight: 300, marginBottom: "1rem", textAlign: "center", letterSpacing: "-0.02em" }}>
             Everything Your Business Needs Online

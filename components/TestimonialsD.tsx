@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Star } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
+import { TextScramble } from "@/components/ui/text-scramble";
 
 interface Testimonial {
   id: number;
@@ -101,7 +102,7 @@ export default function TestimonialsD() {
           justifyContent: "space-between",
         }}
       >
-        <span className="section-label">What Clients Say</span>
+        <span className="section-label"><TextScramble text="What Clients Say" /></span>
       </div>
 
       <hr className="rule" style={{ marginBottom: 0 }} />

@@ -1,6 +1,7 @@
 "use client";
 
 import { AnimatedBlobs } from "@/components/ui/animated-blobs";
+import { TextScramble } from "@/components/ui/text-scramble";
 
 const services = [
   {
@@ -62,7 +63,7 @@ export default function Services() {
           justifyContent: "space-between",
         }}
       >
-        <span className="section-label">What We Do</span>
+        <span className="section-label"><TextScramble text="What We Do" /></span>
       </div>
 
       <hr className="rule" style={{ marginBottom: 0 }} />

@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
-import { ArrowUpRight } from "lucide-react";
+import { useState, useRef, useEffect, useCallback } from "react";
+import { TextScramble } from "@/components/ui/text-scramble";
 
 interface Project {
   title: string;
@@ -48,63 +48,48 @@ const projects: Project[] = [
 
 export default function ProjectShowcase() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [smoothPosition, setSmoothPosition] = useState({ x: 0, y: 0 });
-  const [isVisible, setIsVisible] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  const animationRef = useRef<number | null>(null);
+  const posRef = useRef({ x: 0, y: 0 });
+  const smoothRef = useRef({ x: 0, y: 0 });
+  const previewRef = useRef<HTMLDivElement>(null);
+  const rafRef = useRef<number | null>(null);
+
+  const animate = useCallback(() => {
+    const sx = smoothRef.current.x + (posRef.current.x - smoothRef.current.x) * 0.15;
+    const sy = smoothRef.current.y + (posRef.current.y - smoothRef.current.y) * 0.15;
+    smoothRef.current = { x: sx, y: sy };
+
+    if (previewRef.current) {
+      previewRef.current.style.transform = `translate3d(${sx + 20}px, ${sy - 100}px, 0)`;
+    }
+
+    rafRef.current = requestAnimationFrame(animate);
+  }, []);
 
   useEffect(() => {
-    const lerp = (start: number, end: number, factor: number) => {
-      return start + (end - start) * factor;
-    };
-
-    const animate = () => {
-      setSmoothPosition((prev) => ({
-        x: lerp(prev.x, mousePosition.x, 0.15),
-        y: lerp(prev.y, mousePosition.y, 0.15),
-      }));
-      animationRef.current = requestAnimationFrame(animate);
-    };
-
-    animationRef.current = requestAnimationFrame(animate);
-
+    if (hoveredIndex !== null) {
+      rafRef.current = requestAnimationFrame(animate);
+    } else if (rafRef.current) {
+      cancelAnimationFrame(rafRef.current);
+      rafRef.current = null;
+    }
     return () => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
-  }, [mousePosition]);
+  }, [hoveredIndex, animate]);
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    if (containerRef.current) {
-      const rect = containerRef.current.getBoundingClientRect();
-      setMousePosition({
-        x: e.clientX - rect.left,
-        y: e.clientY - rect.top,
-      });
-    }
-  };
-
-  const handleMouseEnter = (index: number) => {
-    setHoveredIndex(index);
-    setIsVisible(true);
-  };
-
-  const handleMouseLeave = () => {
-    setHoveredIndex(null);
-    setIsVisible(false);
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    posRef.current = { x: e.clientX - rect.left, y: e.clientY - rect.top };
   };
 
   return (
     <section
       id="work"
       ref={containerRef}
-      onMouseMove={handleMouseMove}
-      style={{
-        position: "relative",
-        padding: "8rem 0 0",
-      }}
+      onMouseMove={hoveredIndex !== null ? handleMouseMove : undefined}
+      style={{ position: "relative", padding: "8rem 0 0" }}
     >
       {/* Section header */}
       <div
@@ -118,7 +103,7 @@ export default function ProjectShowcase() {
           gap: "1rem",
         }}
       >
-        <span className="section-label">Selected Work</span>
+        <span className="section-label"><TextScramble text="Selected Work" /></span>
         <span className="section-label" style={{ opacity: 0.5 }}>
           {projects.length} projects
         </span>
@@ -128,16 +113,15 @@ export default function ProjectShowcase() {
 
       {/* Floating image preview */}
       <div
+        ref={previewRef}
         className="showcase-preview"
         style={{
           position: "fixed",
-          left: containerRef.current?.getBoundingClientRect().left ?? 0,
-          top: containerRef.current?.getBoundingClientRect().top ?? 0,
-          transform: `translate3d(${smoothPosition.x + 20}px, ${smoothPosition.y - 100}px, 0)`,
-          opacity: isVisible ? 1 : 0,
-          scale: isVisible ? "1" : "0.8",
-          transition:
-            "opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), scale 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+          left: 0,
+          top: 0,
+          opacity: hoveredIndex !== null ? 1 : 0,
+          scale: hoveredIndex !== null ? "1" : "0.8",
+          transition: "opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), scale 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
           pointerEvents: "none",
           zIndex: 50,
           overflow: "hidden",
@@ -160,6 +144,7 @@ export default function ProjectShowcase() {
               key={project.title}
               src={project.image}
               alt={project.title}
+              loading="lazy"
               style={{
                 position: "absolute",
                 inset: 0,
@@ -169,162 +154,33 @@ export default function ProjectShowcase() {
                 transition: "all 0.5s ease-out",
                 opacity: hoveredIndex === index ? 1 : 0,
                 scale: hoveredIndex === index ? "1" : "1.1",
-                filter:
-                  hoveredIndex === index ? "none" : "blur(10px)",
+                filter: hoveredIndex === index ? "none" : "blur(10px)",
               }}
             />
           ))}
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              background:
-                "linear-gradient(to top, rgba(10,10,10,0.2), transparent)",
-            }}
-          />
         </div>
       </div>
 
       {/* Project list */}
-      <div
-        style={{
-          maxWidth: "1400px",
-          margin: "0 auto",
-          padding: "0 2rem",
-        }}
-      >
+      <div style={{ maxWidth: "1400px", margin: "0 auto", padding: "0 2rem" }}>
         {projects.map((project, index) => (
           <a
             key={project.title}
             href={project.link}
             className="showcase-row"
-            onMouseEnter={() => handleMouseEnter(index)}
-            onMouseLeave={handleMouseLeave}
-            style={{
-              display: "block",
-              textDecoration: "none",
-              color: "inherit",
-            }}
+            onMouseEnter={() => setHoveredIndex(index)}
+            onMouseLeave={() => setHoveredIndex(null)}
+            style={{ display: "block", textDecoration: "none", color: "inherit" }}
           >
-            <div
-              className="showcase-row-inner"
-              style={{
-                position: "relative",
-                padding: "1.5rem 0",
-                borderTop: "1px solid var(--border)",
-                transition: "all 0.3s ease-out",
-              }}
-            >
-              {/* Background highlight */}
-              <div
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  margin: "0 -1rem",
-                  padding: "0 1rem",
-                  background: "rgba(255,255,255,0.03)",
-                  borderRadius: "8px",
-                  transition: "all 0.3s ease-out",
-                  opacity: hoveredIndex === index ? 1 : 0,
-                  transform:
-                    hoveredIndex === index ? "scale(1)" : "scale(0.95)",
-                }}
-              />
-
-              <div
-                style={{
-                  position: "relative",
-                  display: "flex",
-                  alignItems: "flex-start",
-                  justifyContent: "space-between",
-                  gap: "1rem",
-                }}
-              >
-                <div style={{ flex: 1, minWidth: 0 }}>
-                  <div
-                    style={{
-                      display: "inline-flex",
-                      alignItems: "center",
-                      gap: "0.5rem",
-                    }}
-                  >
-                    <h3
-                      style={{
-                        fontSize: "1.125rem",
-                        fontWeight: 500,
-                        letterSpacing: "-0.02em",
-                        color: "var(--fg)",
-                        margin: 0,
-                        position: "relative",
-                      }}
-                    >
-                      <span style={{ position: "relative" }}>
-                        {project.title}
-                        <span
-                          style={{
-                            position: "absolute",
-                            left: 0,
-                            bottom: "-2px",
-                            height: "1px",
-                            background: "var(--fg)",
-                            transition: "all 0.3s ease-out",
-                            width:
-                              hoveredIndex === index ? "100%" : "0%",
-                          }}
-                        />
-                      </span>
-                    </h3>
-
-                    <ArrowUpRight
-                      size={16}
-                      style={{
-                        color: "var(--fg-muted)",
-                        transition: "all 0.3s ease-out",
-                        opacity: hoveredIndex === index ? 1 : 0,
-                        transform:
-                          hoveredIndex === index
-                            ? "translate(0, 0)"
-                            : "translate(-8px, 8px)",
-                      }}
-                    />
-                  </div>
-
-                  <p
-                    style={{
-                      fontSize: "0.8125rem",
-                      marginTop: "0.25rem",
-                      lineHeight: 1.6,
-                      transition: "color 0.3s ease-out",
-                      color:
-                        hoveredIndex === index
-                          ? "rgba(245,245,245,0.7)"
-                          : "var(--fg-muted)",
-                    }}
-                  >
-                    {project.description}
-                  </p>
-                </div>
-
-                <span
-                  style={{
-                    fontSize: "0.75rem",
-                    fontVariantNumeric: "tabular-nums",
-                    letterSpacing: "0.06em",
-                    transition: "color 0.3s ease-out",
-                    color:
-                      hoveredIndex === index
-                        ? "rgba(245,245,245,0.6)"
-                        : "var(--fg-muted)",
-                    flexShrink: 0,
-                  }}
-                >
-                  {project.year}
-                </span>
+            <div className="showcase-row-inner">
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <h3 className="showcase-title">{project.title}</h3>
+                <p className="showcase-desc">{project.description}</p>
               </div>
+              <span className="showcase-year">{project.year}</span>
             </div>
           </a>
         ))}
-
         <div style={{ borderTop: "1px solid var(--border)" }} />
       </div>
     </section>

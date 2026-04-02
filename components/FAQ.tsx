@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { AnimatedBlobs } from "@/components/ui/animated-blobs";
+import { TextScramble } from "@/components/ui/text-scramble";
 
 interface FAQItem {
   question: string;
@@ -60,7 +61,7 @@ export default function FAQ() {
           justifyContent: "space-between",
         }}
       >
-        <span className="section-label">Frequently Asked Questions</span>
+        <span className="section-label"><TextScramble text="Frequently Asked Questions" /></span>
       </div>
 
       <hr className="rule" style={{ marginBottom: 0 }} />

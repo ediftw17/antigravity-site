@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { TextScramble } from "@/components/ui/text-scramble";
 
 const navLinks = [
   { label: "Work", href: "#work" },
@@ -74,7 +75,12 @@ export default function Contact() {
       <hr className="rule" style={{ marginBottom: "5rem" }} />
 
       {/* Animated background paths */}
-      <div style={{ position: "absolute", inset: 0 }}>
+      <div style={{
+        position: "absolute",
+        inset: 0,
+        maskImage: "linear-gradient(to bottom, transparent 0%, black 30%)",
+        WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 30%)",
+      }}>
         <FloatingPaths position={1} />
         <FloatingPaths position={-1} />
       </div>
@@ -87,7 +93,7 @@ export default function Contact() {
             gap: "2.5rem",
           }}
         >
-          <span className="section-label">Get in Touch</span>
+          <span className="section-label"><TextScramble text="Get in Touch" /></span>
 
           <h2 className="contact-heading">
             Let&apos;s build<br />something sharp.
