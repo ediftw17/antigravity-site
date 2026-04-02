@@ -20,9 +20,9 @@ export function DottedSurface({ className, children, ...props }: DottedSurfacePr
 		if (!containerRef.current) return;
 
 		const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-		const SEPARATION = 120;
-		const AMOUNTX = isSafari ? 40 : 60;
-		const AMOUNTY = isSafari ? 40 : 60;
+		const SEPARATION = 50;
+		const AMOUNTX = isSafari ? 60 : 100;
+		const AMOUNTY = isSafari ? 60 : 100;
 
 		const scene = new THREE.Scene();
 		scene.fog = new THREE.Fog(0x0a0a0a, 800, 4000);
