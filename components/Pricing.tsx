@@ -106,10 +106,10 @@ export default function Pricing() {
           gap: "4rem",
           alignItems: "start",
         }}>
-          <div>
-            <motion.span variants={fadeUp} custom={0} style={{ fontSize: "0.7rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--fg-muted)", display: "inline-block" }}>
+          <motion.div variants={fadeUp} custom={0}>
+            <span style={{ fontSize: "0.7rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--fg-muted)", display: "inline-block" }}>
               <TextScramble text="What you pay" />
-            </motion.span>
+            </span>
             <div style={{ marginTop: "1.5rem" }}>
               <div style={{ marginBottom: "2.5rem" }}>
                 <div style={{ fontSize: "0.8125rem", color: "var(--fg-muted)", marginBottom: "0.375rem" }}>One-time build</div>
@@ -123,13 +123,19 @@ export default function Pricing() {
                 <div style={{ fontSize: "0.8125rem", color: "var(--fg-muted)", marginTop: "0.25rem" }}>Hosting, SSL, domain, security, minor updates</div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          <div>
-            <motion.span variants={fadeUp} custom={0} style={{ fontSize: "0.7rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--fg-muted)", display: "inline-block" }}>
+          <motion.div variants={fadeUp} custom={1}>
+            <span style={{ fontSize: "0.7rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--fg-muted)", display: "inline-block" }}>
               <TextScramble text="What's included" />
-            </motion.span>
-            <ul style={{ listStyle: "none", padding: 0, margin: "1.5rem 0 0", display: "flex", flexDirection: "column", gap: "1rem" }}>
+            </span>
+            <motion.ul
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.06 } } }}
+              style={{ listStyle: "none", padding: 0, margin: "1.5rem 0 0", display: "flex", flexDirection: "column", gap: "1rem" }}
+            >
               {[
                 "Custom design for your niche",
                 "Mobile-first, fast-loading",
@@ -140,12 +146,16 @@ export default function Pricing() {
                 "Minor content updates included",
                 "Live in 5–7 business days",
               ].map((item) => (
-                <li key={item} style={{ display: "flex", alignItems: "center", gap: "0.75rem", fontSize: "0.875rem", color: "var(--fg-muted)" }}>
+                <motion.li
+                  key={item}
+                  variants={{ hidden: { opacity: 0, x: -12 }, visible: { opacity: 1, x: 0, transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] as const } } }}
+                  style={{ display: "flex", alignItems: "center", gap: "0.75rem", fontSize: "0.875rem", color: "var(--fg-muted)" }}
+                >
                   <CheckCircle size={14} style={{ color: "var(--fg)", flexShrink: 0 }} />
                   {item}
-                </li>
+                </motion.li>
               ))}
-            </ul>
+            </motion.ul>
             <a
               href="/#contact"
               style={{
@@ -164,7 +174,7 @@ export default function Pricing() {
             >
               Get a free mockup <ArrowRight size={14} />
             </a>
-          </div>
+          </motion.div>
         </div>
 
         <style jsx>{`
