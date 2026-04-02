@@ -64,11 +64,11 @@ export default function Hero() {
           </h1>
 
           <p className="hero-tagline" style={{ maxWidth: "800px", margin: "0 auto 1rem", position: "relative" }}>
-            Your <AnimatedTextCycle
-              words={["HVAC company", "dental clinic", "law firm", "restaurant", "plumbing business", "gym"]}
+            Your business deserves a <AnimatedTextCycle
+              words={["better website", "stronger brand", "real online presence", "site that converts", "competitive edge"]}
               interval={3000}
               className="hero-cycle-word"
-            />{" "}deserves a better website
+            />
           </p>
 
           <p style={{ maxWidth: "520px", margin: "0 auto 2.5rem", color: "var(--fg-muted)", fontSize: "0.9rem", lineHeight: 1.6 }}>
