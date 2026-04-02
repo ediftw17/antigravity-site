@@ -1,70 +1,53 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
 
 export default function CustomCursor() {
-  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
-  const [isHovering, setIsHovering] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
+  const cursorRef = useRef<HTMLDivElement>(null);
+  const pos = useRef({ x: 0, y: 0 });
+  const visible = useRef(false);
 
   useEffect(() => {
     const mq = window.matchMedia("(pointer: fine)");
     if (!mq.matches) return;
 
-    const handleMouseMove = (e: MouseEvent) => {
-      setCursorPos({ x: e.clientX, y: e.clientY });
-      if (!isVisible) setIsVisible(true);
-    };
+    const el = cursorRef.current;
+    if (!el) return;
 
-    const handleMouseOver = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      if (
-        target.tagName === "A" ||
-        target.tagName === "BUTTON" ||
-        target.tagName === "INPUT" ||
-        target.closest("button") ||
-        target.closest("a")
-      ) {
-        setIsHovering(true);
+    const onMove = (e: MouseEvent) => {
+      pos.current.x = e.clientX;
+      pos.current.y = e.clientY;
+      if (!visible.current) {
+        visible.current = true;
+        el.style.opacity = "1";
       }
+      el.style.transform = `translate3d(${e.clientX - 12}px, ${e.clientY - 12}px, 0)`;
     };
 
-    const handleMouseOut = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      if (
-        target.tagName === "A" ||
-        target.tagName === "BUTTON" ||
-        target.tagName === "INPUT" ||
-        target.closest("button") ||
-        target.closest("a")
-      ) {
-        setIsHovering(false);
-      }
+    const onLeave = () => {
+      visible.current = false;
+      el.style.opacity = "0";
     };
 
-    const handleLeave = () => setIsVisible(false);
-    const handleEnter = () => setIsVisible(true);
+    const onEnter = () => {
+      visible.current = true;
+      el.style.opacity = "1";
+    };
 
-    window.addEventListener("mousemove", handleMouseMove);
-    document.addEventListener("mouseover", handleMouseOver);
-    document.addEventListener("mouseout", handleMouseOut);
-    document.documentElement.addEventListener("mouseleave", handleLeave);
-    document.documentElement.addEventListener("mouseenter", handleEnter);
+    window.addEventListener("mousemove", onMove, { passive: true });
+    document.documentElement.addEventListener("mouseleave", onLeave);
+    document.documentElement.addEventListener("mouseenter", onEnter);
 
     return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      document.removeEventListener("mouseover", handleMouseOver);
-      document.removeEventListener("mouseout", handleMouseOut);
-      document.documentElement.removeEventListener("mouseleave", handleLeave);
-      document.documentElement.removeEventListener("mouseenter", handleEnter);
+      window.removeEventListener("mousemove", onMove);
+      document.documentElement.removeEventListener("mouseleave", onLeave);
+      document.documentElement.removeEventListener("mouseenter", onEnter);
     };
-  }, [isVisible]);
-
-  if (!isVisible) return null;
+  }, []);
 
   return (
-    <motion.div
+    <div
+      ref={cursorRef}
       style={{
         position: "fixed",
         top: 0,
@@ -72,22 +55,14 @@ export default function CustomCursor() {
         pointerEvents: "none",
         zIndex: 9999,
         mixBlendMode: "difference",
-      }}
-      animate={{
-        x: cursorPos.x - 12,
-        y: cursorPos.y - 12,
-        rotate: isHovering ? 360 : 0,
-      }}
-      transition={{
-        x: { type: "spring", stiffness: 500, damping: 28, mass: 0.5 },
-        y: { type: "spring", stiffness: 500, damping: 28, mass: 0.5 },
-        rotate: { duration: 0.6, ease: [0.4, 0, 0.2, 1] },
+        opacity: 0,
+        willChange: "transform",
       }}
     >
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
         <line x1="12" y1="4" x2="12" y2="20" stroke="white" strokeWidth="2" strokeLinecap="round" />
         <line x1="4" y1="12" x2="20" y2="12" stroke="white" strokeWidth="2" strokeLinecap="round" />
       </svg>
-    </motion.div>
+    </div>
   );
 }
