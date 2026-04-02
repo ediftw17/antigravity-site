@@ -52,7 +52,7 @@ export default function Hero() {
       {/* DottedSurface — positioned in bottom portion */}
       <div style={{
         position: "absolute",
-        top: "35%",
+        top: "25%",
         left: 0,
         right: 0,
         bottom: 0,
