@@ -33,8 +33,8 @@ export function DottedSurface({ className, children, ...props }: DottedSurfacePr
 			1,
 			10000,
 		);
-		camera.position.set(0, 800, 0);
-		camera.lookAt(0, 0, 0);
+		camera.position.set(0, 250, 500);
+		camera.lookAt(0, 0, -400);
 
 		const renderer = new THREE.WebGLRenderer({
 			alpha: true,
@@ -70,7 +70,7 @@ export function DottedSurface({ className, children, ...props }: DottedSurfacePr
 		geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
 
 		const material = new THREE.PointsMaterial({
-			size: 12,
+			size: 6,
 			vertexColors: true,
 			transparent: true,
 			opacity: 0.8,
