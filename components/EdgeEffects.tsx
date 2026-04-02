@@ -1,68 +1,72 @@
 "use client";
 
+import { useEffect } from "react";
+
 export default function EdgeEffects() {
-  return (
-    <>
-      {/* Top edge — matches bottom style */}
-      <div style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        right: 0,
-        height: "clamp(4rem, 10vw, 8rem)",
-        backdropFilter: "blur(6px)",
-        WebkitBackdropFilter: "blur(6px)",
-        maskImage: "linear-gradient(to bottom, black 0%, transparent 100%)",
-        WebkitMaskImage: "linear-gradient(to bottom, black 0%, transparent 100%)",
-        zIndex: 90,
-        pointerEvents: "none",
-        transform: "translate3d(0, 0, 0)",
-      }} />
+  useEffect(() => {
+    const EDGE = 80; // px from edge where effect starts
 
-      {/* Bottom edge */}
-      <div style={{
-        position: "fixed",
-        bottom: 0,
-        left: 0,
-        right: 0,
-        height: "clamp(4rem, 10vw, 8rem)",
-        backdropFilter: "blur(6px)",
-        WebkitBackdropFilter: "blur(6px)",
-        maskImage: "linear-gradient(to top, black 0%, transparent 100%)",
-        WebkitMaskImage: "linear-gradient(to top, black 0%, transparent 100%)",
-        zIndex: 90,
-        pointerEvents: "none",
-      }} />
+    function applyEdgeEffects() {
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
 
-      {/* Left edge */}
-      <div style={{
-        position: "fixed",
-        top: 0,
-        bottom: 0,
-        left: 0,
-        width: "clamp(2rem, 5vw, 4rem)",
-        backdropFilter: "blur(4px)",
-        WebkitBackdropFilter: "blur(4px)",
-        maskImage: "linear-gradient(to right, black 0%, transparent 100%)",
-        WebkitMaskImage: "linear-gradient(to right, black 0%, transparent 100%)",
-        zIndex: 89,
-        pointerEvents: "none",
-      }} />
+      const elements = document.querySelectorAll(
+        "h1, h2, h3, p, a, span, button, img, li, div.hiw-card, nav"
+      );
 
-      {/* Right edge */}
-      <div style={{
-        position: "fixed",
-        top: 0,
-        bottom: 0,
-        right: 0,
-        width: "clamp(2rem, 5vw, 4rem)",
-        backdropFilter: "blur(4px)",
-        WebkitBackdropFilter: "blur(4px)",
-        maskImage: "linear-gradient(to left, black 0%, transparent 100%)",
-        WebkitMaskImage: "linear-gradient(to left, black 0%, transparent 100%)",
-        zIndex: 89,
-        pointerEvents: "none",
-      }} />
-    </>
-  );
+      elements.forEach((el) => {
+        const htmlEl = el as HTMLElement;
+        const rect = el.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+
+        // Distance from each edge (0 = at edge, 1 = fully inside)
+        const fromLeft = Math.min(cx / EDGE, 1);
+        const fromRight = Math.min((vw - cx) / EDGE, 1);
+        const fromTop = Math.min(cy / EDGE, 1);
+        const fromBottom = Math.min((vh - cy) / EDGE, 1);
+
+        const edgeFactor = Math.min(fromLeft, fromRight, fromTop, fromBottom);
+
+        if (edgeFactor < 1) {
+          const intensity = 1 - edgeFactor;
+          const skewX = (0.5 - fromLeft + fromRight - 0.5) * intensity * 3;
+          const skewY = (0.5 - fromTop + fromBottom - 0.5) * intensity * 2;
+          const rgbShift = Math.round(intensity * 3);
+
+          htmlEl.style.transform = `skew(${skewX}deg, ${skewY}deg)`;
+          htmlEl.style.textShadow =
+            rgbShift > 0
+              ? `${rgbShift}px 0 rgba(255,0,50,0.3), ${-rgbShift}px 0 rgba(0,200,255,0.3)`
+              : "none";
+          htmlEl.style.transition = "transform 0.3s ease, text-shadow 0.3s ease";
+        } else {
+          htmlEl.style.transform = "";
+          htmlEl.style.textShadow = "";
+        }
+      });
+    }
+
+    let ticking = false;
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          applyEdgeEffects();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", applyEdgeEffects);
+    applyEdgeEffects();
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", applyEdgeEffects);
+    };
+  }, []);
+
+  return null;
 }
