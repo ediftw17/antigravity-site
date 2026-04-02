@@ -29,7 +29,8 @@ function FloatingPaths({ position }: { position: number }) {
     <div style={{ position: "absolute", inset: 0, pointerEvents: "none" }}>
       <svg
         style={{ width: "100%", height: "100%", color: "var(--fg)" }}
-        viewBox="0 0 696 316"
+        viewBox="-200 0 1200 316"
+        preserveAspectRatio="none"
         fill="none"
       >
         <title>Background Paths</title>
@@ -66,7 +67,6 @@ export default function Contact() {
       id="contact"
       style={{
         position: "relative",
-        overflow: "hidden",
         padding: "0 2rem 4rem",
         maxWidth: "1400px",
         margin: "0 auto",
