@@ -48,15 +48,54 @@ export default function Hero() {
         overflow: "hidden",
       }}
     >
-      {/* DottedSurface with mask so dots fade at edges */}
+      {/* DottedSurface with perspective warp — stretches at edges */}
       <div style={{
         position: "absolute",
         inset: 0,
-        maskImage: "linear-gradient(to bottom, transparent 0%, black 25%, black 75%, transparent 100%)",
-        WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 25%, black 75%, transparent 100%)",
+        perspective: "800px",
+        perspectiveOrigin: "50% 40%",
       }}>
-        <DottedSurface />
+        <div style={{
+          width: "100%",
+          height: "100%",
+          transform: "rotateX(8deg) scale(1.15)",
+          transformOrigin: "50% 50%",
+        }}>
+          <DottedSurface />
+        </div>
       </div>
+
+      {/* Top blur fade — starts after nav (60px), blurs downward */}
+      <div style={{
+        position: "absolute",
+        top: "60px",
+        left: 0,
+        right: 0,
+        height: "clamp(8rem, 20vw, 16rem)",
+        backdropFilter: "blur(8px)",
+        WebkitBackdropFilter: "blur(8px)",
+        maskImage: "linear-gradient(to bottom, black 0%, transparent 100%)",
+        WebkitMaskImage: "linear-gradient(to bottom, black 0%, transparent 100%)",
+        zIndex: 1,
+        pointerEvents: "none",
+        isolation: "isolate",
+      }} />
+
+      {/* Bottom blur fade */}
+      <div style={{
+        position: "absolute",
+        bottom: 0,
+        left: 0,
+        right: 0,
+        height: "clamp(8rem, 20vw, 16rem)",
+        backdropFilter: "blur(8px)",
+        WebkitBackdropFilter: "blur(8px)",
+        maskImage: "linear-gradient(to top, black 0%, transparent 100%)",
+        WebkitMaskImage: "linear-gradient(to top, black 0%, transparent 100%)",
+        zIndex: 1,
+        pointerEvents: "none",
+        isolation: "isolate",
+      }} />
 
       <div style={{ maxWidth: "1400px", width: "100%", textAlign: "center", position: "relative", zIndex: 1 }}>
         <AnimatedGroup variants={heroVariants}>
