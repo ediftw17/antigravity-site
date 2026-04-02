@@ -4,14 +4,14 @@ import { useEffect } from "react";
 
 export default function EdgeEffects() {
   useEffect(() => {
-    const EDGE = 80; // px from edge where effect starts
+    const EDGE = 50;
 
     function applyEdgeEffects() {
       const vw = window.innerWidth;
       const vh = window.innerHeight;
 
       const elements = document.querySelectorAll(
-        "h1, h2, h3, p, a, span, button, img, li, div.hiw-card, nav"
+        "h1, h2, h3, p, a:not(.nav-link), span.section-label, button, img"
       );
 
       elements.forEach((el) => {
@@ -20,7 +20,6 @@ export default function EdgeEffects() {
         const cx = rect.left + rect.width / 2;
         const cy = rect.top + rect.height / 2;
 
-        // Distance from each edge (0 = at edge, 1 = fully inside)
         const fromLeft = Math.min(cx / EDGE, 1);
         const fromRight = Math.min((vw - cx) / EDGE, 1);
         const fromTop = Math.min(cy / EDGE, 1);
@@ -30,19 +29,21 @@ export default function EdgeEffects() {
 
         if (edgeFactor < 1) {
           const intensity = 1 - edgeFactor;
-          const skewX = (0.5 - fromLeft + fromRight - 0.5) * intensity * 3;
-          const skewY = (0.5 - fromTop + fromBottom - 0.5) * intensity * 2;
-          const rgbShift = Math.round(intensity * 3);
+          const skewX = (fromRight - fromLeft) * intensity * 0.8;
+          const skewY = (fromBottom - fromTop) * intensity * 0.5;
+          const rgbShift = Math.round(intensity * 1.5);
 
           htmlEl.style.transform = `skew(${skewX}deg, ${skewY}deg)`;
           htmlEl.style.textShadow =
             rgbShift > 0
-              ? `${rgbShift}px 0 rgba(255,0,50,0.3), ${-rgbShift}px 0 rgba(0,200,255,0.3)`
+              ? `${rgbShift}px 0 rgba(255,0,50,0.15), ${-rgbShift}px 0 rgba(0,200,255,0.15)`
               : "none";
-          htmlEl.style.transition = "transform 0.3s ease, text-shadow 0.3s ease";
+          htmlEl.style.transition = "transform 0.4s ease-out, text-shadow 0.4s ease-out";
         } else {
-          htmlEl.style.transform = "";
-          htmlEl.style.textShadow = "";
+          if (htmlEl.style.transform) {
+            htmlEl.style.transform = "";
+            htmlEl.style.textShadow = "";
+          }
         }
       });
     }
