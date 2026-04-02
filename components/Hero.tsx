@@ -48,25 +48,19 @@ export default function Hero() {
         overflow: "hidden",
       }}
     >
-      {/* DottedSurface with perspective warp */}
+      {/* DottedSurface — positioned in bottom portion */}
       <div style={{
         position: "absolute",
-        inset: 0,
+        top: "35%",
+        left: 0,
+        right: 0,
+        bottom: 0,
         zIndex: 0,
-        perspective: "600px",
-        perspectiveOrigin: "50% 35%",
+        overflow: "hidden",
+        maskImage: "linear-gradient(to bottom, transparent 0%, black 20%)",
+        WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 20%)",
       }}>
-        <div style={{
-          position: "absolute",
-          top: "40%",
-          left: "-5%",
-          right: "-5%",
-          bottom: "-5%",
-          transform: "rotateX(14deg) scale(1.2)",
-          transformOrigin: "50% 40%",
-        }}>
-          <DottedSurface />
-        </div>
+        <DottedSurface />
       </div>
 
       <div style={{ maxWidth: "1400px", width: "100%", textAlign: "center", position: "relative", zIndex: 1 }}>
@@ -155,6 +149,7 @@ export default function Hero() {
           flexDirection: "column",
           alignItems: "center",
           gap: "0.5rem",
+          zIndex: 91,
         }}
       >
         <span className="section-label" style={{ fontSize: "0.65rem" }}>Scroll</span>
