@@ -134,6 +134,8 @@ export default function Contact() {
             borderTop: "1px solid var(--border)",
             marginTop: "8rem",
             paddingTop: "2rem",
+            position: "relative",
+            zIndex: 91,
           }}
         >
           <span style={{ fontSize: "0.75rem", color: "var(--fg-subtle)" }}>
