@@ -51,18 +51,67 @@ export default function Hero() {
       {/* DottedSurface with perspective warp — stretches at edges */}
       <div style={{
         position: "absolute",
-        inset: 0,
-        perspective: "800px",
-        perspectiveOrigin: "50% 40%",
+        inset: "-10%",
+        perspective: "600px",
+        perspectiveOrigin: "50% 35%",
       }}>
         <div style={{
           width: "100%",
           height: "100%",
-          transform: "rotateX(8deg) scale(1.15)",
+          transform: "rotateX(18deg) scale(1.3)",
           transformOrigin: "50% 50%",
         }}>
           <DottedSurface />
         </div>
+      </div>
+
+      {/* Chromatic aberration / glitch edges */}
+      <div style={{
+        position: "absolute",
+        inset: 0,
+        pointerEvents: "none",
+        zIndex: 1,
+      }}>
+        {/* Left edge — cyan/blue shift */}
+        <div style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          bottom: 0,
+          width: "clamp(3rem, 8vw, 8rem)",
+          background: "linear-gradient(to right, rgba(0, 200, 255, 0.06) 0%, transparent 100%)",
+          mixBlendMode: "screen",
+        }} />
+        {/* Right edge — red/magenta shift */}
+        <div style={{
+          position: "absolute",
+          top: 0,
+          right: 0,
+          bottom: 0,
+          width: "clamp(3rem, 8vw, 8rem)",
+          background: "linear-gradient(to left, rgba(255, 50, 100, 0.06) 0%, transparent 100%)",
+          mixBlendMode: "screen",
+        }} />
+        {/* Top edge — subtle green */}
+        <div style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: "clamp(2rem, 6vw, 6rem)",
+          background: "linear-gradient(to bottom, rgba(0, 255, 140, 0.04) 0%, transparent 100%)",
+          mixBlendMode: "screen",
+        }} />
+        {/* Bottom edge — magenta/red */}
+        <div style={{
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          right: 0,
+          height: "clamp(3rem, 8vw, 8rem)",
+          background: "linear-gradient(to top, rgba(255, 0, 80, 0.05) 0%, transparent 100%)",
+          mixBlendMode: "screen",
+        }} />
       </div>
 
 
