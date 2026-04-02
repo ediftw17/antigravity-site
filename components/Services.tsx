@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+
 import { AnimatedBlobs } from "@/components/ui/animated-blobs";
 import { TextScramble } from "@/components/ui/text-scramble";
 

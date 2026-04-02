@@ -20,12 +20,12 @@ export function DottedSurface({ className, children, ...props }: DottedSurfacePr
 		if (!containerRef.current) return;
 
 		const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-		const SEPARATION = 50;
-		const AMOUNTX = isSafari ? 60 : 100;
-		const AMOUNTY = isSafari ? 60 : 100;
+		const SEPARATION = 150;
+		const AMOUNTX = isSafari ? 28 : 40;
+		const AMOUNTY = isSafari ? 42 : 60;
 
 		const scene = new THREE.Scene();
-		scene.fog = new THREE.Fog(0x0a0a0a, 800, 4000);
+		scene.fog = new THREE.Fog(0x0a0a0a, 2000, 10000);
 
 		const camera = new THREE.PerspectiveCamera(
 			60,
@@ -33,8 +33,7 @@ export function DottedSurface({ className, children, ...props }: DottedSurfacePr
 			1,
 			10000,
 		);
-		camera.position.set(0, 250, 500);
-		camera.lookAt(0, 0, -400);
+		camera.position.set(0, 355, 1220);
 
 		const renderer = new THREE.WebGLRenderer({
 			alpha: true,
@@ -70,7 +69,7 @@ export function DottedSurface({ className, children, ...props }: DottedSurfacePr
 		geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
 
 		const material = new THREE.PointsMaterial({
-			size: 6,
+			size: 8,
 			vertexColors: true,
 			transparent: true,
 			opacity: 0.8,

@@ -7,6 +7,7 @@ import {
   ArrowRight, Sparkles, CheckCircle, Star,
 } from "lucide-react";
 import { motion, useScroll, useTransform, useInView, useSpring } from "framer-motion";
+
 import { AnimatedBlobs } from "@/components/ui/animated-blobs";
 import { TextScramble } from "@/components/ui/text-scramble";
 

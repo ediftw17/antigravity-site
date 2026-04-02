@@ -3,6 +3,7 @@ import { Geist } from "next/font/google";
 import { CleanUrl } from "@/components/CleanUrl";
 import EdgeEffects from "@/components/EdgeEffects";
 import CustomCursor from "@/components/CustomCursor";
+
 import "./globals.css";
 
 const geist = Geist({
