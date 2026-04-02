@@ -25,7 +25,7 @@ export function DottedSurface({ className, children, ...props }: DottedSurfacePr
 		const AMOUNTY = isSafari ? 42 : 60;
 
 		const scene = new THREE.Scene();
-		scene.fog = new THREE.Fog(0x0a0a0a, 2000, 10000);
+		scene.fog = new THREE.Fog(0xffffff, 2000, 10000);
 
 		const camera = new THREE.PerspectiveCamera(
 			60,
