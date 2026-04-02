@@ -34,8 +34,6 @@ export default function Nav() {
         alignItems: "center",
         justifyContent: "space-between",
         background: "transparent",
-        backdropFilter: "blur(8px)",
-        WebkitBackdropFilter: "blur(8px)",
         transform: "translate3d(0, 0, 0)",
         willChange: "transform",
         borderBottom: "none",
