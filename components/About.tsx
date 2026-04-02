@@ -115,7 +115,7 @@ export default function About() {
             <h3 style={{ fontSize: "1.5rem", fontWeight: 500, marginBottom: "0.5rem" }}>Ready to get more customers?</h3>
             <p style={{ color: "var(--fg-muted)", fontSize: "0.875rem" }}>Transparent pricing. Infrastructure from $149/mo.</p>
           </div>
-          <motion.a href="#contact" style={{ background: "var(--fg)", color: "var(--bg)", padding: "0.75rem 1.5rem", borderRadius: "8px", display: "flex", alignItems: "center", gap: "0.5rem", fontWeight: 500, fontSize: "0.875rem", textDecoration: "none" }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+          <motion.a href="https://nule-build.vercel.app" style={{ background: "var(--fg)", color: "var(--bg)", padding: "0.75rem 1.5rem", borderRadius: "8px", display: "flex", alignItems: "center", gap: "0.5rem", fontWeight: 500, fontSize: "0.875rem", textDecoration: "none" }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             Get a Free Quote <ArrowRight className="w-4 h-4" />
           </motion.a>
         </motion.div>

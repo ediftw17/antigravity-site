@@ -4,19 +4,20 @@ import { useEffect, useRef } from "react";
 
 export default function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
-  const pos = useRef({ x: 0, y: 0 });
+  const svgRef = useRef<SVGSVGElement>(null);
   const visible = useRef(false);
+  const hovering = useRef(false);
+  const rotation = useRef(0);
 
   useEffect(() => {
     const mq = window.matchMedia("(pointer: fine)");
     if (!mq.matches) return;
 
     const el = cursorRef.current;
-    if (!el) return;
+    const svg = svgRef.current;
+    if (!el || !svg) return;
 
     const onMove = (e: MouseEvent) => {
-      pos.current.x = e.clientX;
-      pos.current.y = e.clientY;
       if (!visible.current) {
         visible.current = true;
         el.style.opacity = "1";
@@ -24,22 +25,50 @@ export default function CustomCursor() {
       el.style.transform = `translate3d(${e.clientX - 12}px, ${e.clientY - 12}px, 0)`;
     };
 
-    const onLeave = () => {
-      visible.current = false;
-      el.style.opacity = "0";
+    const onOver = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (
+        target.tagName === "A" ||
+        target.tagName === "BUTTON" ||
+        target.tagName === "INPUT" ||
+        target.closest("a") ||
+        target.closest("button")
+      ) {
+        if (!hovering.current) {
+          hovering.current = true;
+          rotation.current += 90;
+          svg.style.transition = "transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)";
+          svg.style.transform = `rotate(${rotation.current}deg)`;
+        }
+      }
     };
 
-    const onEnter = () => {
-      visible.current = true;
-      el.style.opacity = "1";
+    const onOut = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (
+        target.tagName === "A" ||
+        target.tagName === "BUTTON" ||
+        target.tagName === "INPUT" ||
+        target.closest("a") ||
+        target.closest("button")
+      ) {
+        hovering.current = false;
+      }
     };
+
+    const onLeave = () => { visible.current = false; el.style.opacity = "0"; };
+    const onEnter = () => { visible.current = true; el.style.opacity = "1"; };
 
     window.addEventListener("mousemove", onMove, { passive: true });
+    document.addEventListener("mouseover", onOver, { passive: true });
+    document.addEventListener("mouseout", onOut, { passive: true });
     document.documentElement.addEventListener("mouseleave", onLeave);
     document.documentElement.addEventListener("mouseenter", onEnter);
 
     return () => {
       window.removeEventListener("mousemove", onMove);
+      document.removeEventListener("mouseover", onOver);
+      document.removeEventListener("mouseout", onOut);
       document.documentElement.removeEventListener("mouseleave", onLeave);
       document.documentElement.removeEventListener("mouseenter", onEnter);
     };
@@ -59,7 +88,7 @@ export default function CustomCursor() {
         willChange: "transform",
       }}
     >
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <svg ref={svgRef} width="24" height="24" viewBox="0 0 24 24" fill="none">
         <line x1="12" y1="4" x2="12" y2="20" stroke="white" strokeWidth="2" strokeLinecap="round" />
         <line x1="4" y1="12" x2="20" y2="12" stroke="white" strokeWidth="2" strokeLinecap="round" />
       </svg>

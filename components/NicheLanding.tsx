@@ -65,7 +65,7 @@ export default function NicheLanding({
         </motion.p>
         <motion.div variants={fadeUp} custom={3} style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
           <a
-            href="/#contact"
+            href="https://nule-build.vercel.app"
             style={{
               display: "inline-flex",
               alignItems: "center",
@@ -213,7 +213,7 @@ export default function NicheLanding({
         </motion.p>
         <motion.a
           variants={fadeUp} custom={3}
-          href="/#contact"
+          href="https://nule-build.vercel.app"
           style={{
             display: "inline-flex",
             alignItems: "center",

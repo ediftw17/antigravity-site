@@ -191,7 +191,7 @@ export default function WhyNule() {
         </motion.p>
         <motion.a
           variants={fadeUp} custom={2}
-          href="/#contact"
+          href="https://nule-build.vercel.app"
           style={{
             display: "inline-flex",
             alignItems: "center",

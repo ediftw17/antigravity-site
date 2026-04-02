@@ -157,7 +157,7 @@ export default function Pricing() {
               ))}
             </motion.ul>
             <a
-              href="/#contact"
+              href="https://nule-build.vercel.app"
               style={{
                 display: "inline-flex",
                 alignItems: "center",
@@ -301,7 +301,7 @@ export default function Pricing() {
         </motion.h2>
         <motion.a
           variants={fadeUp} custom={1}
-          href="/#contact"
+          href="https://nule-build.vercel.app"
           style={{
             display: "inline-flex",
             alignItems: "center",
