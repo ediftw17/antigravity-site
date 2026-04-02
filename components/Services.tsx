@@ -79,13 +79,16 @@ export default function Services() {
       <hr className="rule" style={{ marginBottom: 0 }} />
 
       <motion.div className="services-grid" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.15 }}>
-        {services.map((s, i) => (
-          <motion.div key={s.number} className="service-item" variants={fadeUp} custom={i}>
-            <div className="service-number">{s.number}</div>
-            <div className="service-name">{s.name}</div>
-            <div className="service-desc">{s.description}</div>
-          </motion.div>
-        ))}
+        {services.map((s, i) => {
+          const base = i * 3;
+          return (
+            <div key={s.number} className="service-item">
+              <motion.div className="service-number" variants={fadeUp} custom={base}>{s.number}</motion.div>
+              <motion.div className="service-name" variants={fadeUp} custom={base + 1}>{s.name}</motion.div>
+              <motion.div className="service-desc" variants={fadeUp} custom={base + 2}>{s.description}</motion.div>
+            </div>
+          );
+        })}
       </motion.div>
     </section>
   );
