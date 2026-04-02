@@ -91,13 +91,7 @@ export default function FAQ() {
                 +
               </span>
             </button>
-            <div
-              className="faq-answer-wrap"
-              style={{
-                maxHeight: openIndex === index ? "200px" : "0px",
-                opacity: openIndex === index ? 1 : 0,
-              }}
-            >
+            <div className={`faq-answer-wrap ${openIndex === index ? "open" : ""}`}>
               <p className="faq-answer">{faq.answer}</p>
             </div>
           </div>
