@@ -57,17 +57,14 @@ export default function RootLayout({
       <body>
         <CleanUrl />
         {children}
-        {/* Global blur fades — top (after nav) and bottom (above footer) */}
+        {/* Global edge fades — top (seamless with nav) and bottom */}
         <div style={{
           position: "fixed",
-          top: "60px",
+          top: 0,
           left: 0,
           right: 0,
-          height: "clamp(8rem, 20vw, 16rem)",
-          backdropFilter: "blur(8px)",
-          WebkitBackdropFilter: "blur(8px)",
-          maskImage: "linear-gradient(to bottom, black 0%, transparent 100%)",
-          WebkitMaskImage: "linear-gradient(to bottom, black 0%, transparent 100%)",
+          height: "clamp(6rem, 15vw, 12rem)",
+          background: "linear-gradient(to bottom, var(--bg) 0%, var(--bg) 40%, transparent 100%)",
           zIndex: 90,
           pointerEvents: "none",
         }} />
@@ -76,11 +73,8 @@ export default function RootLayout({
           bottom: 0,
           left: 0,
           right: 0,
-          height: "clamp(8rem, 20vw, 16rem)",
-          backdropFilter: "blur(8px)",
-          WebkitBackdropFilter: "blur(8px)",
-          maskImage: "linear-gradient(to top, black 0%, transparent 100%)",
-          WebkitMaskImage: "linear-gradient(to top, black 0%, transparent 100%)",
+          height: "clamp(6rem, 15vw, 12rem)",
+          background: "linear-gradient(to top, var(--bg) 0%, var(--bg) 20%, transparent 100%)",
           zIndex: 90,
           pointerEvents: "none",
         }} />
