@@ -202,8 +202,10 @@ export default function Pricing() {
 
         <div style={{ display: "flex", flexDirection: "column" }}>
           {addons.map((addon, i) => (
-            <div
+            <motion.div
               key={i}
+              variants={fadeUp}
+              custom={i + 1}
               style={{
                 display: "grid",
                 gridTemplateColumns: "1fr auto",
@@ -233,7 +235,7 @@ export default function Pricing() {
               <div style={{ fontSize: "1rem", fontWeight: 500, whiteSpace: "nowrap", textAlign: "right" }}>
                 {addon.price}
               </div>
-            </div>
+            </motion.div>
           ))}
           <div style={{ borderTop: "1px solid var(--border)" }} />
         </div>

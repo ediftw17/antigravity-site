@@ -105,9 +105,9 @@ export default function WhyNule() {
         <motion.span variants={fadeUp} custom={0} style={{ fontSize: "0.7rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--fg-muted)", display: "inline-block" }}>
           <TextScramble text="How we compare" />
         </motion.span>
-        <motion.table variants={fadeUp} custom={1} style={{ width: "100%", borderCollapse: "collapse", marginTop: "2rem", minWidth: "600px" }}>
+        <table style={{ width: "100%", borderCollapse: "collapse", marginTop: "2rem", minWidth: "600px" }}>
           <thead>
-            <tr>
+            <motion.tr variants={fadeUp} custom={1}>
               <th style={{ textAlign: "left", padding: "0.75rem 1rem 0.75rem 0", fontSize: "0.75rem", color: "var(--fg-muted)", fontWeight: 400, borderBottom: "1px solid var(--border)", width: "22%" }}></th>
               {[
                 { label: "Nule", highlight: true },
@@ -127,11 +127,11 @@ export default function WhyNule() {
                   {col.label}
                 </th>
               ))}
-            </tr>
+            </motion.tr>
           </thead>
           <tbody>
             {rows.map((row, i) => (
-              <tr key={i}>
+              <motion.tr key={i} variants={fadeUp} custom={i + 2}>
                 <td style={{ padding: "1rem 1rem 1rem 0", fontSize: "0.8125rem", fontWeight: 500, color: "var(--fg)", borderBottom: "1px solid rgba(255,255,255,0.04)", verticalAlign: "middle" }}>
                   {row.label}
                 </td>
@@ -147,10 +147,10 @@ export default function WhyNule() {
                 <td style={{ padding: "1rem", borderBottom: "1px solid rgba(255,255,255,0.04)", verticalAlign: "middle" }}>
                   <Cell value={row.diy} />
                 </td>
-              </tr>
+              </motion.tr>
             ))}
           </tbody>
-        </motion.table>
+        </table>
       </motion.section>
 
       <hr style={{ border: "none", borderTop: "1px solid var(--border)", margin: "0 2rem" }} />
@@ -161,15 +161,18 @@ export default function WhyNule() {
           <TextScramble text="How it works" />
         </motion.span>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "3rem", marginTop: "3rem" }} className="why-steps-grid">
-          {steps.map((step, i) => (
-            <motion.div key={step.n} variants={fadeUp} custom={i + 1}>
-              <div style={{ fontSize: "3rem", fontWeight: 300, color: "rgba(245,245,245,0.12)", letterSpacing: "-0.04em", lineHeight: 1, marginBottom: "1rem" }}>
-                {step.n}
+          {steps.map((step, i) => {
+            const base = i * 3 + 1;
+            return (
+              <div key={step.n}>
+                <motion.div variants={fadeUp} custom={base} style={{ fontSize: "3rem", fontWeight: 300, color: "rgba(245,245,245,0.12)", letterSpacing: "-0.04em", lineHeight: 1, marginBottom: "1rem" }}>
+                  {step.n}
+                </motion.div>
+                <motion.h3 variants={fadeUp} custom={base + 1} style={{ fontSize: "1rem", fontWeight: 500, marginBottom: "0.5rem" }}>{step.title}</motion.h3>
+                <motion.p variants={fadeUp} custom={base + 2} style={{ fontSize: "0.8125rem", color: "var(--fg-muted)", lineHeight: 1.7, margin: 0 }}>{step.body}</motion.p>
               </div>
-              <h3 style={{ fontSize: "1rem", fontWeight: 500, marginBottom: "0.5rem" }}>{step.title}</h3>
-              <p style={{ fontSize: "0.8125rem", color: "var(--fg-muted)", lineHeight: 1.7, margin: 0 }}>{step.body}</p>
-            </motion.div>
-          ))}
+            );
+          })}
         </div>
         <style jsx>{`
           @media (max-width: 600px) {
