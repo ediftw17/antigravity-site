@@ -70,7 +70,7 @@ export default function Contact() {
         padding: "0 2rem 4rem",
         maxWidth: "1400px",
         margin: "0 auto",
-        zIndex: 91,
+        zIndex: 1,
       }}
     >
       <hr className="rule" style={{ marginBottom: "5rem" }} />
@@ -140,7 +140,7 @@ export default function Contact() {
             marginTop: "8rem",
             paddingTop: "2rem",
             position: "relative",
-            zIndex: 91,
+            zIndex: 1,
           }}
         >
           <span style={{ fontSize: "0.75rem", color: "var(--fg-subtle)" }}>
