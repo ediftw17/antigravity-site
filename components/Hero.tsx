@@ -65,37 +65,6 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Top blur fade — starts after nav (60px), blurs downward */}
-      <div style={{
-        position: "absolute",
-        top: "60px",
-        left: 0,
-        right: 0,
-        height: "clamp(8rem, 20vw, 16rem)",
-        backdropFilter: "blur(8px)",
-        WebkitBackdropFilter: "blur(8px)",
-        maskImage: "linear-gradient(to bottom, black 0%, transparent 100%)",
-        WebkitMaskImage: "linear-gradient(to bottom, black 0%, transparent 100%)",
-        zIndex: 1,
-        pointerEvents: "none",
-        isolation: "isolate",
-      }} />
-
-      {/* Bottom blur fade */}
-      <div style={{
-        position: "absolute",
-        bottom: 0,
-        left: 0,
-        right: 0,
-        height: "clamp(8rem, 20vw, 16rem)",
-        backdropFilter: "blur(8px)",
-        WebkitBackdropFilter: "blur(8px)",
-        maskImage: "linear-gradient(to top, black 0%, transparent 100%)",
-        WebkitMaskImage: "linear-gradient(to top, black 0%, transparent 100%)",
-        zIndex: 1,
-        pointerEvents: "none",
-        isolation: "isolate",
-      }} />
 
       <div style={{ maxWidth: "1400px", width: "100%", textAlign: "center", position: "relative", zIndex: 1 }}>
         <AnimatedGroup variants={heroVariants}>

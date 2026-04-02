@@ -54,7 +54,37 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${geist.variable}`}>
-      <body><CleanUrl />{children}</body>
+      <body>
+        <CleanUrl />
+        {children}
+        {/* Global blur fades — top (after nav) and bottom (above footer) */}
+        <div style={{
+          position: "fixed",
+          top: "60px",
+          left: 0,
+          right: 0,
+          height: "clamp(8rem, 20vw, 16rem)",
+          backdropFilter: "blur(8px)",
+          WebkitBackdropFilter: "blur(8px)",
+          maskImage: "linear-gradient(to bottom, black 0%, transparent 100%)",
+          WebkitMaskImage: "linear-gradient(to bottom, black 0%, transparent 100%)",
+          zIndex: 90,
+          pointerEvents: "none",
+        }} />
+        <div style={{
+          position: "fixed",
+          bottom: 0,
+          left: 0,
+          right: 0,
+          height: "clamp(8rem, 20vw, 16rem)",
+          backdropFilter: "blur(8px)",
+          WebkitBackdropFilter: "blur(8px)",
+          maskImage: "linear-gradient(to top, black 0%, transparent 100%)",
+          WebkitMaskImage: "linear-gradient(to top, black 0%, transparent 100%)",
+          zIndex: 90,
+          pointerEvents: "none",
+        }} />
+      </body>
     </html>
   );
 }
