@@ -24,10 +24,15 @@
 }
 
 html {
-  scroll-behavior: smooth;
   background: #0a0a0a;
   overflow-x: hidden;
-  scrollbar-gutter: stable;
+}
+
+/* smooth scroll only on anchor clicks, not on refresh/restore */
+@media (prefers-reduced-motion: no-preference) {
+  html:focus-within {
+    scroll-behavior: smooth;
+  }
 }
 
 body {
