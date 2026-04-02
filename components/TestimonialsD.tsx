@@ -247,19 +247,45 @@ export default function TestimonialsD() {
                 {/* Star rating */}
                 <StarRating rating={t.rating} />
 
-                {/* Quote */}
-                <p
-                  style={{
-                    fontSize: "1.125rem",
-                    lineHeight: 1.7,
-                    color: "var(--fg)",
-                    fontStyle: "italic",
-                    margin: 0,
-                    letterSpacing: "-0.01em",
-                  }}
-                >
-                  &ldquo;{t.content}&rdquo;
-                </p>
+                {/* Quote — word-reveal (C animation, D layout) */}
+                {(() => {
+                  const words = t.content.split(" ");
+                  const displayWords = words.map((w, i) =>
+                    i === 0 ? `\u201C${w}` : i === words.length - 1 ? `${w}\u201D` : w
+                  );
+                  return (
+                    <motion.p
+                      key={`quote-${active}`}
+                      initial="hidden"
+                      animate="visible"
+                      variants={{
+                        hidden: {},
+                        visible: { transition: { staggerChildren: 0.05, delayChildren: 0.2 } },
+                      }}
+                      style={{
+                        fontSize: "1.125rem",
+                        lineHeight: 1.7,
+                        color: "var(--fg)",
+                        fontStyle: "italic",
+                        margin: 0,
+                        letterSpacing: "-0.01em",
+                      }}
+                    >
+                      {displayWords.map((word, i) => (
+                        <motion.span
+                          key={i}
+                          variants={{
+                            hidden: { opacity: 0.15 },
+                            visible: { opacity: 1, transition: { duration: 0.3, ease: "easeOut" } },
+                          }}
+                          style={{ display: "inline" }}
+                        >
+                          {word}{i < displayWords.length - 1 ? " " : ""}
+                        </motion.span>
+                      ))}
+                    </motion.p>
+                  );
+                })()}
 
                 {/* Separator */}
                 <Separator />

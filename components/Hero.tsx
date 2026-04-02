@@ -74,7 +74,7 @@ export default function Hero() {
           </p>
 
           <p style={{ maxWidth: "520px", margin: "0 auto 2.5rem", color: "var(--fg-muted)", fontSize: "0.9rem", lineHeight: 1.6 }}>
-            Your site goes live in days, not months. AI-assisted design, hand-finished quality. No upfront cost.
+            AI-assisted design, hand-finished quality. Live in 5–7 business days.
           </p>
 
           <div
@@ -122,7 +122,7 @@ export default function Hero() {
           </div>
 
           <p style={{ fontSize: "0.7rem", color: "var(--fg-subtle)", letterSpacing: "0.05em" }}>
-            No upfront payment. You only pay when you love the design.
+            Transparent pricing. Infrastructure from $149/mo.
           </p>
         </AnimatedGroup>
       </div>

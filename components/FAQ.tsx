@@ -11,7 +11,7 @@ interface FAQItem {
 const faqs: FAQItem[] = [
   {
     question: "How long does it take?",
-    answer: "Most sites go live in 3-5 business days.",
+    answer: "Most sites go live in 5-7 business days.",
   },
   {
     question: "What do you need from me?",

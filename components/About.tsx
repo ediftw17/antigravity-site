@@ -45,7 +45,7 @@ export default function About() {
   const stats = [
     { icon: <Award />, value: 24, label: "Sites Delivered", suffix: "+" },
     { icon: <Users />, value: 18, label: "Happy Clients", suffix: "+" },
-    { icon: <Calendar />, value: 3, label: "Day Avg Turnaround", suffix: "" },
+    { icon: <Calendar />, value: 7, label: "Day Avg Build", suffix: "" },
     { icon: <TrendingUp />, value: 98, label: "Client Retention", suffix: "%" },
   ];
 
@@ -112,7 +112,7 @@ export default function About() {
         <motion.div style={{ marginTop: "5rem", padding: "2.5rem 0", display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: "1.5rem" }} initial={{ opacity: 0, y: 30 }} animate={isStatsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }} transition={{ duration: 0.8, delay: 0.5 }}>
           <div>
             <h3 style={{ fontSize: "1.5rem", fontWeight: 500, marginBottom: "0.5rem" }}>Ready to get more customers?</h3>
-            <p style={{ color: "var(--fg-muted)", fontSize: "0.875rem" }}>Most sites are live in 3-5 days. No upfront cost until you see the design.</p>
+            <p style={{ color: "var(--fg-muted)", fontSize: "0.875rem" }}>Transparent pricing. Infrastructure from $149/mo.</p>
           </div>
           <motion.a href="#contact" style={{ background: "var(--fg)", color: "var(--bg)", padding: "0.75rem 1.5rem", borderRadius: "8px", display: "flex", alignItems: "center", gap: "0.5rem", fontWeight: 500, fontSize: "0.875rem", textDecoration: "none" }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             Get a Free Quote <ArrowRight className="w-4 h-4" />
