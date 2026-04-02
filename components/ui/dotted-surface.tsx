@@ -28,13 +28,12 @@ export function DottedSurface({ className, children, ...props }: DottedSurfacePr
 		scene.fog = new THREE.Fog(0x0a0a0a, 800, 4000);
 
 		const camera = new THREE.PerspectiveCamera(
-			75,
+			60,
 			window.innerWidth / window.innerHeight,
 			1,
 			10000,
 		);
-		camera.position.set(0, 500, 900);
-		camera.lookAt(0, 0, -200);
+		camera.position.set(0, 355, 1220);
 
 		const renderer = new THREE.WebGLRenderer({
 			alpha: true,
