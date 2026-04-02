@@ -3,16 +3,17 @@
 export default function EdgeEffects() {
   return (
     <>
-      {/* Top edge — nav blur strip */}
+      {/* Top edge — matches bottom style */}
       <div style={{
         position: "fixed",
         top: 0,
         left: 0,
         right: 0,
-        height: "60px",
-        backdropFilter: "blur(12px)",
-        WebkitBackdropFilter: "blur(12px)",
-        background: "rgba(10, 10, 10, 0.6)",
+        height: "clamp(4rem, 10vw, 8rem)",
+        backdropFilter: "blur(6px)",
+        WebkitBackdropFilter: "blur(6px)",
+        maskImage: "linear-gradient(to bottom, black 0%, transparent 100%)",
+        WebkitMaskImage: "linear-gradient(to bottom, black 0%, transparent 100%)",
         zIndex: 90,
         pointerEvents: "none",
         transform: "translate3d(0, 0, 0)",
