@@ -2,6 +2,17 @@
 
 import { useState } from "react";
 import { CheckCircle, ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { TextScramble } from "@/components/ui/text-scramble";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] as const },
+  }),
+};
 
 const addons = [
   {
@@ -73,22 +84,22 @@ export default function Pricing() {
   return (
     <main style={{ minHeight: "100vh", background: "var(--bg)", color: "var(--fg)", paddingTop: "80px" }}>
       {/* Hero */}
-      <section style={{ padding: "6rem 2rem 5rem", maxWidth: "900px", margin: "0 auto", textAlign: "center" }}>
-        <p style={{ fontSize: "0.7rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--fg-muted)", marginBottom: "1rem" }}>
-          Pricing
-        </p>
-        <h1 style={{ fontSize: "clamp(2.5rem, 6vw, 4rem)", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1.1, marginBottom: "1.5rem" }}>
+      <motion.section initial="hidden" animate="visible" style={{ padding: "6rem 2rem 5rem", maxWidth: "900px", margin: "0 auto", textAlign: "center" }}>
+        <motion.p variants={fadeUp} custom={0} style={{ fontSize: "0.7rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--fg-muted)", marginBottom: "1rem" }}>
+          <TextScramble text="Pricing" />
+        </motion.p>
+        <motion.h1 variants={fadeUp} custom={1} style={{ fontSize: "clamp(2.5rem, 6vw, 4rem)", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1.1, marginBottom: "1.5rem" }}>
           Transparent pricing.<br />No surprises.
-        </h1>
-        <p style={{ fontSize: "1rem", color: "var(--fg-muted)", lineHeight: 1.7, maxWidth: "520px", margin: "0 auto" }}>
+        </motion.h1>
+        <motion.p variants={fadeUp} custom={2} style={{ fontSize: "1rem", color: "var(--fg-muted)", lineHeight: 1.7, maxWidth: "520px", margin: "0 auto" }}>
           One flat build fee. Infrastructure at $149/mo. Add only what your business needs.
-        </p>
-      </section>
+        </motion.p>
+      </motion.section>
 
       <hr style={{ border: "none", borderTop: "1px solid var(--border)", margin: "0 2rem" }} />
 
       {/* Base plan */}
-      <section style={{ padding: "5rem 2rem", maxWidth: "900px", margin: "0 auto" }}>
+      <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} style={{ padding: "5rem 2rem", maxWidth: "900px", margin: "0 auto" }}>
         <div style={{
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
@@ -96,9 +107,9 @@ export default function Pricing() {
           alignItems: "start",
         }}>
           <div>
-            <span style={{ fontSize: "0.7rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--fg-muted)" }}>
-              What you pay
-            </span>
+            <motion.span variants={fadeUp} custom={0} style={{ fontSize: "0.7rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--fg-muted)", display: "inline-block" }}>
+              <TextScramble text="What you pay" />
+            </motion.span>
             <div style={{ marginTop: "1.5rem" }}>
               <div style={{ marginBottom: "2.5rem" }}>
                 <div style={{ fontSize: "0.8125rem", color: "var(--fg-muted)", marginBottom: "0.375rem" }}>One-time build</div>
@@ -115,9 +126,9 @@ export default function Pricing() {
           </div>
 
           <div>
-            <span style={{ fontSize: "0.7rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--fg-muted)" }}>
-              What&apos;s included
-            </span>
+            <motion.span variants={fadeUp} custom={0} style={{ fontSize: "0.7rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--fg-muted)", display: "inline-block" }}>
+              <TextScramble text="What's included" />
+            </motion.span>
             <ul style={{ listStyle: "none", padding: 0, margin: "1.5rem 0 0", display: "flex", flexDirection: "column", gap: "1rem" }}>
               {[
                 "Custom design for your niche",
@@ -164,20 +175,20 @@ export default function Pricing() {
             }
           }
         `}</style>
-      </section>
+      </motion.section>
 
       <hr style={{ border: "none", borderTop: "1px solid var(--border)", margin: "0 2rem" }} />
 
       {/* Add-ons */}
-      <section style={{ padding: "5rem 2rem", maxWidth: "900px", margin: "0 auto" }}>
-        <div style={{ marginBottom: "3rem" }}>
+      <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} style={{ padding: "5rem 2rem", maxWidth: "900px", margin: "0 auto" }}>
+        <motion.div variants={fadeUp} custom={0} style={{ marginBottom: "3rem" }}>
           <span style={{ fontSize: "0.7rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--fg-muted)" }}>
-            Add-ons
+            <TextScramble text="Add-ons" />
           </span>
           <h2 style={{ fontSize: "clamp(1.5rem, 3vw, 2rem)", fontWeight: 300, letterSpacing: "-0.02em", marginTop: "0.75rem" }}>
             Layer in what you need
           </h2>
-        </div>
+        </motion.div>
 
         <div style={{ display: "flex", flexDirection: "column" }}>
           {addons.map((addon, i) => (
@@ -216,15 +227,15 @@ export default function Pricing() {
           ))}
           <div style={{ borderTop: "1px solid var(--border)" }} />
         </div>
-      </section>
+      </motion.section>
 
       <hr style={{ border: "none", borderTop: "1px solid var(--border)", margin: "0 2rem" }} />
 
       {/* FAQ */}
-      <section style={{ padding: "5rem 2rem", maxWidth: "700px", margin: "0 auto" }}>
-        <span style={{ fontSize: "0.7rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--fg-muted)" }}>
-          FAQ
-        </span>
+      <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} style={{ padding: "5rem 2rem", maxWidth: "700px", margin: "0 auto" }}>
+        <motion.span variants={fadeUp} custom={0} style={{ fontSize: "0.7rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--fg-muted)", display: "inline-block" }}>
+          <TextScramble text="FAQ" />
+        </motion.span>
         <div style={{ marginTop: "2rem" }}>
           {faqs.map((faq, i) => (
             <div key={i} style={{ borderTop: "1px solid var(--border)" }}>
@@ -269,14 +280,15 @@ export default function Pricing() {
           ))}
           <div style={{ borderTop: "1px solid var(--border)" }} />
         </div>
-      </section>
+      </motion.section>
 
       {/* CTA */}
-      <section style={{ padding: "5rem 2rem 8rem", textAlign: "center" }}>
-        <h2 style={{ fontSize: "clamp(1.75rem, 4vw, 2.5rem)", fontWeight: 300, letterSpacing: "-0.02em", marginBottom: "1.5rem" }}>
+      <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} style={{ padding: "5rem 2rem 8rem", textAlign: "center" }}>
+        <motion.h2 variants={fadeUp} custom={0} style={{ fontSize: "clamp(1.75rem, 4vw, 2.5rem)", fontWeight: 300, letterSpacing: "-0.02em", marginBottom: "1.5rem" }}>
           Ready to start?
-        </h2>
-        <a
+        </motion.h2>
+        <motion.a
+          variants={fadeUp} custom={1}
           href="/#contact"
           style={{
             display: "inline-flex",
@@ -291,8 +303,8 @@ export default function Pricing() {
           }}
         >
           Get a free mockup <ArrowRight size={14} />
-        </a>
-      </section>
+        </motion.a>
+      </motion.section>
     </main>
   );
 }
