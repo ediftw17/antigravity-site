@@ -16,11 +16,22 @@ export default function AnimatedTextCycle({
 }: AnimatedTextCycleProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [width, setWidth] = useState("auto");
+  const [minWidth, setMinWidth] = useState("auto");
   const measureRef = useRef<HTMLDivElement>(null);
+  const initialized = useRef(false);
 
   useEffect(() => {
     if (measureRef.current) {
       const elements = measureRef.current.children;
+      // Set min-width to widest word on first render to prevent layout shift
+      if (!initialized.current) {
+        let maxW = 0;
+        for (let i = 0; i < elements.length; i++) {
+          maxW = Math.max(maxW, elements[i].getBoundingClientRect().width);
+        }
+        setMinWidth(`${maxW}px`);
+        initialized.current = true;
+      }
       if (elements.length > currentIndex) {
         const newWidth = elements[currentIndex].getBoundingClientRect().width;
         setWidth(`${newWidth}px`);
@@ -64,7 +75,7 @@ export default function AnimatedTextCycle({
       </div>
 
       <motion.span
-        style={{ position: "relative", display: "inline-block" }}
+        style={{ position: "relative", display: "inline-block", minWidth }}
         animate={{
           width,
           transition: { type: "spring", stiffness: 150, damping: 15, mass: 1.2 },
