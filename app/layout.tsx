@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import { CleanUrl } from "@/components/CleanUrl";
+import EdgeEffects from "@/components/EdgeEffects";
+import CustomCursor from "@/components/CustomCursor";
 import "./globals.css";
 
 const geist = Geist({
@@ -57,27 +59,8 @@ export default function RootLayout({
       <body>
         <CleanUrl />
         {children}
-        {/* Global edge fades — top (seamless with nav) and bottom */}
-        <div style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          right: 0,
-          height: "clamp(6rem, 15vw, 12rem)",
-          background: "linear-gradient(to bottom, var(--bg) 0%, var(--bg) 40%, transparent 100%)",
-          zIndex: 90,
-          pointerEvents: "none",
-        }} />
-        <div style={{
-          position: "fixed",
-          bottom: 0,
-          left: 0,
-          right: 0,
-          height: "clamp(6rem, 15vw, 12rem)",
-          background: "linear-gradient(to top, var(--bg) 0%, var(--bg) 20%, transparent 100%)",
-          zIndex: 90,
-          pointerEvents: "none",
-        }} />
+        <EdgeEffects />
+        <CustomCursor />
       </body>
     </html>
   );

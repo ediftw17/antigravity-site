@@ -28,6 +28,12 @@ html {
   overflow-x: hidden;
 }
 
+@media (pointer: fine) {
+  *, *::before, *::after {
+    cursor: none !important;
+  }
+}
+
 /* smooth scroll only on anchor clicks, not on refresh/restore */
 @media (prefers-reduced-motion: no-preference) {
   html:focus-within {
