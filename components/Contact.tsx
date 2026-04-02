@@ -70,6 +70,7 @@ export default function Contact() {
         padding: "0 2rem 4rem",
         maxWidth: "1400px",
         margin: "0 auto",
+        zIndex: 91,
       }}
     >
       <hr className="rule" style={{ marginBottom: "5rem" }} />
