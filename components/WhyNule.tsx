@@ -67,7 +67,7 @@ const rows = [
 
 const steps = [
   { n: "01", title: "Scope call", body: "15 minutes. We learn your business, your market, what you need the site to do." },
-  { n: "02", title: "Free preview", body: "You see a mockup before paying anything. No pressure, no commitment." },
+  { n: "02", title: "Site build", body: "We build a custom site for your business — no templates, no page builders." },
   { n: "03", title: "Go live", body: "We build, you review, we launch. 5–7 days from scope call to live site." },
 ];
 
@@ -191,7 +191,7 @@ export default function WhyNule() {
         </motion.p>
         <motion.a
           variants={fadeUp} custom={2}
-          href="https://nule-build.vercel.app"
+          href="https://nule.io/#contact"
           style={{
             display: "inline-flex",
             alignItems: "center",

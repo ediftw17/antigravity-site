@@ -65,7 +65,7 @@ export default function NicheLanding({
         </motion.p>
         <motion.div variants={fadeUp} custom={3} style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
           <a
-            href="https://nule-build.vercel.app"
+            href="https://nule.io/#contact"
             style={{
               display: "inline-flex",
               alignItems: "center",
@@ -78,7 +78,7 @@ export default function NicheLanding({
               textDecoration: "none",
             }}
           >
-            Get your free site preview <ArrowRight size={14} />
+            Get a Free Quote <ArrowRight size={14} />
           </a>
           {exampleUrl && (
             <a
@@ -213,7 +213,7 @@ export default function NicheLanding({
         </motion.p>
         <motion.a
           variants={fadeUp} custom={3}
-          href="https://nule-build.vercel.app"
+          href="https://nule.io/#contact"
           style={{
             display: "inline-flex",
             alignItems: "center",

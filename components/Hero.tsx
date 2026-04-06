@@ -102,7 +102,7 @@ export default function Hero() {
             }}
           >
             <a
-              href="https://nule-build.vercel.app"
+              href="https://nule.io/#contact"
               style={{
                 display: "inline-block",
                 padding: "0.85rem 2.25rem",

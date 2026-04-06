@@ -81,9 +81,12 @@ export function DottedSurface({ className, children, ...props }: DottedSurfacePr
 
 		let count = 0;
 		let animationId: number = 0;
+		let stopped = false;
 
 		const animate = () => {
+			if (stopped) return;
 			animationId = requestAnimationFrame(animate);
+			if (sceneRef.current) sceneRef.current.animationId = animationId;
 
 			const positionAttribute = geometry.attributes.position;
 			const pos = positionAttribute.array as Float32Array;
@@ -123,6 +126,7 @@ export function DottedSurface({ className, children, ...props }: DottedSurfacePr
 		};
 
 		return () => {
+			stopped = true;
 			window.removeEventListener('resize', handleResize);
 
 			if (sceneRef.current) {
